@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "VoiceDex - Pokedex con voz",
+    "slug": "voiceDex",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/ico.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/ico.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4979f2"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "icon": "./assets/ico.png",
+      "versionCode": 6,
+      "package": "com.alexfg.voicedex"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
