@@ -4,7 +4,7 @@ import { StyleSheet, Text, Image, View, FlatList, TextInput } from 'react-native
 import { useQuery, gql } from '@apollo/client';
 import usePokemonSearch from './usePokemonSearch';
 import pokegif from '../assets/chiko.gif'
-import pokeico from '../assets/favicon.png'
+import pokeico from '../assets/navicon.png'
 
 
 import PokemonCard from './PokemonCard';

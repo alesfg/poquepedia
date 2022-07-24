@@ -5,7 +5,7 @@ import { useQuery, gql } from '@apollo/client';
 import { backgroundColors, stats, emojis, colors } from '../assets/colors'
 import pokeball_bg from '../assets/pokeball_bg.png'
 import pokegif from '../assets/image11.gif'
-import pokeico from '../assets/favicon.png'
+import pokeico from '../assets/navicon.png'
 import wg from '../assets/weight.png'
 import hg from '../assets/height.png'
 import { translateHabitat, translateType } from '../assets/translate'

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
 
-import pokeico from '../assets/favicon.png'
+import pokeico from '../assets/navicon.png'
 
 
 export default function Conf({navigation}) {

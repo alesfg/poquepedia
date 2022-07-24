@@ -4,10 +4,10 @@
     "slug": "voiceDex",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ico.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/ico.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#4979f2"
     },
