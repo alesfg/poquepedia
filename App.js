@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { View, Image } from 'react-native'
 
-import poke from './assets/favicon.png'
+import poke from './assets/navicon.png'
 
 import 'react-native-gesture-handler'
 
