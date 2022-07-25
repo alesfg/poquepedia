@@ -6,8 +6,6 @@ import { backgroundColors, stats, emojis, colors } from '../assets/colors'
 import pokeball_bg from '../assets/pokeball_bg.png'
 import pokegif from '../assets/image11.gif'
 import pokeico from '../assets/navicon.png'
-import wg from '../assets/weight.png'
-import hg from '../assets/height.png'
 import { translateHabitat, translateType } from '../assets/translate'
 
 import * as Speech from 'expo-speech';
@@ -76,8 +74,8 @@ const PokemonDetails = ({ route, navigation }) => {
   const [tinyBackGifUri, settinyBackGifUri] = useState(null)
   const [tinyImgUri, settinyImgUri] = useState(null)
   const [tinyBackImgUri, settinyBackImgUri] = useState(null)
-  const [weight, setweight] = useState()
-  const [height, setheight] = useState()
+  const [wgpoke, setweight] = useState()
+  const [hgpoke, setheight] = useState()
   const [fav, setFav] = useState(false)
 
   const { loading, error, data } = useQuery(GET_DETALLES, {
@@ -125,7 +123,7 @@ const PokemonDetails = ({ route, navigation }) => {
 
   if (!loading) {
     if (data && Object.keys(data)?.length > 0 && name != undefined) {
-    console.log("EL loading mas data >")
+      console.log("EL loading mas data >")
 
       speak();
     }
@@ -179,12 +177,12 @@ const PokemonDetails = ({ route, navigation }) => {
       id: Math.ceil(Math.random() * 840)
     })
   }
-  const toggleFav = async() => {
+  const toggleFav = async () => {
     /* await AsyncStorage.setItem(STORAGE_FAV,`${id}`);
     const storageSample = await AsyncStorage.getItem(STORAGE_FAV)
     alert(storageSample) */
   }
-  
+
 
   return (
     <View style={[styles.screen, { backgroundColor: backgroundColors[types[0]] }]}>
@@ -220,12 +218,12 @@ const PokemonDetails = ({ route, navigation }) => {
         <TouchableOpacity onPress={() => toggleFav()}>
           <AntDesign name="heart" size={35} color="red" />
         </TouchableOpacity>
-        
+
       </View>
       {/* BG IMG */}
-      <View style={{ opacity: 0.15, paddingTop: 30 }}>
+      <View style={{ opacity: 0.12, paddingTop: 20 }}>
         <ImageBackground source={pokeball_bg} style={{
-          width: 200, height: 160, alignSelf: 'flex-end'
+          width: 190, height: 140, alignSelf: 'flex-end'
         }}
           resizeMode='contain'
         />
@@ -256,11 +254,11 @@ const PokemonDetails = ({ route, navigation }) => {
         </View>
       }
       <View style={styles.infoCard}>
-
-        <Image 
+        {/* INFOCARD */}
+        <Image
           source={{ uri: imageUri }}
           style={styles.image}
-          />
+        />
         <View style={{ flexDirection: 'row' }}>
           <View>
             {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0])} </Text>}
@@ -309,7 +307,8 @@ const PokemonDetails = ({ route, navigation }) => {
               </View>
             }
             {/* STATS */}
-            <View style={{ marginTop: 5, marginBottom: 10 }}>
+            {height >= 750 ?
+            <View style={{ marginTop: 5 }}>
               <View style={styles.row}>
                 <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
                 <Progress step={hp} stat={'hp'} height={6} />
@@ -327,20 +326,26 @@ const PokemonDetails = ({ route, navigation }) => {
                 <Progress step={speed} stat={'speed'} height={6} />
               </View>
             </View>
+            : <></>}
             {/* PESO ALTURA */}
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 10 }}>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ fontWeight: 'bold', color: colors[types[0]] }}>{weight / 10}</Text>
-                <Image source={wg} style={{ height: 20 }} resizeMode='contain' />
+            <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}>
+              <View style={{ marginRight: 30 }}>
+                <Text style={{ fontWeight: 'bold', color: colors[types[0]] }}>{wgpoke / 10} kg</Text>
               </View>
               <View style={{ width: 2, height: 20, backgroundColor: backgroundColors[types[0]] }}>
                 {/* Separator */}
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ fontWeight: 'bold', color: colors[types[0]] }}>{height / 10} m</Text>
-                <Image source={hg} style={{ height: 20 }} resizeMode='contain' />
+              <View style={{ marginLeft: 30 }}>
+                <Text style={{ fontWeight: 'bold', color: colors[types[0]] }}>{hgpoke / 10} m</Text>
               </View>
             </View>
+
+              {/* MORE DETAILS */}
+              <TouchableOpacity>
+                <View style={{marginTop:20,backgroundColor:'#BFD0CA', borderRadius:10, width:150, display:'flex', alignSelf:'center'}}>
+                  <Text style={{textAlign:'center',padding:10}}>Más detalles</Text>
+                </View>
+              </TouchableOpacity>
           </View>
         }
       </View>
@@ -359,6 +364,8 @@ const PokemonDetails = ({ route, navigation }) => {
 export default PokemonDetails
 const { width, height } = Dimensions.get('window');
 
+console.log("wid: "+ width, "hei: "+height)
+
 const styles = StyleSheet.create({
   screen: {
     height: height,
@@ -375,7 +382,8 @@ const styles = StyleSheet.create({
   infoCard: {
     margin: 10,
     backgroundColor: '#FFFFFF',
-    height: '58%',
+    // height: '58%',
+    flex: 1,
     borderRadius: 10,
     alignItems: 'center',
     padding: 20,
