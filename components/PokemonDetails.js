@@ -3,57 +3,18 @@ import { StyleSheet, Text, View, Image, ImageBackground, Dimensions, TouchableOp
 
 import { useQuery, gql } from '@apollo/client';
 import { backgroundColors, stats, emojis, colors } from '../assets/colors'
+import Progress from './ProgressBars';
 import pokeball_bg from '../assets/pokeball_bg.png'
 import pokegif from '../assets/image11.gif'
 import pokeico from '../assets/navicon.png'
 import { translateHabitat, translateType } from '../assets/translate'
-
+import { styles } from '../assets/styles/PokemonDetailsStyles';
 import * as Speech from 'expo-speech';
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { GET_DETALLES } from '../querys/queryDetails';
 
-export const GET_DETALLES = gql`
-query getDetalles($_eq: Int) {
-  pokemon_v2_pokemonspecies(where: {id: {_eq: $_eq}}) {
-    pokemon_v2_pokemonspeciesflavortexts(where: {language_id: {_eq: 7}}, limit: 1) {
-      flavor_text
-    }
-    pokemon_v2_pokemonshape {
-      name
-    }
-    pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 7}}) {
-      genus
-    }
-    name
-    pokemon_v2_pokemons_aggregate {
-      nodes {
-        pokemon_v2_pokemonstats {
-          base_stat
-          pokemon_v2_stat {
-            name
-          }
-        }
-        height
-        weight
-      }
-    }
-    pokemon_v2_pokemons(where: {id: {_eq: $_eq}}) {
-      pokemon_v2_pokemontypes {
-        pokemon_v2_type {
-          name
-        }
-      }
-    }
-    is_legendary
-    pokemon_v2_pokemonhabitat {
-      name
-    }
-    generation_id
-    evolves_from_species_id
-  }
-}
-`
 const STORAGE_FAV = '@favourites';
 
 
@@ -81,34 +42,7 @@ const PokemonDetails = ({ route, navigation }) => {
   const { loading, error, data } = useQuery(GET_DETALLES, {
     variables: { "_eq": id },
   });
-  const Progress = ({ step, stat, height }) => {
-    return (
-      <>
-        <Text style={{ fontSize: 14, fontWeight: 'bold', marginBottom: 8, width: 30 }}>{step}</Text>
-        <View style={{
-          height,
-          backgroundColor: 'rgba(0,0,0,0.1)',
-          borderTopEndRadiusRadius: height,
-          borderTopRightRadius: height,
-          overflow: 'hidden',
-          width: 110,
-          alignSelf: 'center',
-        }}>
-          <View style={{
-            height,
-            width: step,
-            borderTopEndRadiusRadius: height,
-            borderTopRightRadius: height,
-            backgroundColor: stats[stat],
-            overflow: 'hidden',
-            position: 'absolute',
-            left: 0,
-            top: 0
-          }}></View>
-        </View>
-      </>
-    )
-  }
+ 
   const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
   const speak = () => {
@@ -342,7 +276,7 @@ const PokemonDetails = ({ route, navigation }) => {
 
               {/* MORE DETAILS */}
               <TouchableOpacity>
-                <View style={{marginTop:20,backgroundColor:'#BFD0CA', borderRadius:10, width:150, display:'flex', alignSelf:'center'}}>
+                <View style={{marginTop:15,backgroundColor:'#BFD0CA', borderRadius:10, width:150, display:'flex', alignSelf:'center'}}>
                   <Text style={{textAlign:'center',padding:10}}>Más detalles</Text>
                 </View>
               </TouchableOpacity>
@@ -365,83 +299,3 @@ export default PokemonDetails
 const { width, height } = Dimensions.get('window');
 
 console.log("wid: "+ width, "hei: "+height)
-
-const styles = StyleSheet.create({
-  screen: {
-    height: height,
-    width: width,
-    alignSelf: 'center',
-    flex: 1
-  },
-  name: {
-    paddingTop: 45,
-    paddingLeft: 21,
-    flexDirection: "row",
-    justifyContent: 'space-between'
-  },
-  infoCard: {
-    margin: 10,
-    backgroundColor: '#FFFFFF',
-    // height: '58%',
-    flex: 1,
-    borderRadius: 10,
-    alignItems: 'center',
-    padding: 20,
-  },
-  row: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    height: 30,
-    alignItems: 'center'
-  },
-  stats: {
-    left: 0,
-    marginLeft: 1,
-    marginRight: 1,
-    width: '50%',
-    fontWeight: "bold",
-    fontSize: 16
-  },
-  image: {
-    width: 200,
-    height: 200,
-    marginTop: -170
-  },
-  sprite: {
-    width: 60,
-    height: 60
-  },
-  type: {
-    borderRadius: 10,
-    padding: 5,
-    marginHorizontal: 5,
-    textTransform: 'capitalize'
-  },
-  habitat: {
-    paddingTop: 5,
-    fontFamily: 'monospace'
-  },
-  openDrawer: {
-    backgroundColor: '#3e5f8f',
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    marginBottom: 110,
-    width: 80,
-    borderColor: '#cdcdcd',
-    borderWidth: 0.1,
-    borderTopLeftRadius: 100,
-    borderBottomLeftRadius: 100,
-    opacity: 0.7
-  },
-  fav: {
-    position: 'absolute',
-    top: 100,
-    opacity: 0.8,
-    marginLeft: 35,
-    width: '82%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    zIndex: 1
-  }
-})
