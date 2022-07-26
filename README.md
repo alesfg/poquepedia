@@ -1,5 +1,8 @@
 # VoiceDex
 
+Link App on Play Store: 
+[VoiceDex](https://play.google.com/store/apps/details?id=com.alexfg.voicedex)
+
 React Native app that speak data from Pokemons.
 Here some screen captures:
 
