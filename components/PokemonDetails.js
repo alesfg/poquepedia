@@ -241,7 +241,7 @@ const PokemonDetails = ({ route, navigation }) => {
               </View>
             }
             {/* STATS */}
-            {height >= 750 ?
+            {height > 800 ?
             <View style={{ marginTop: 5 }}>
               <View style={styles.row}>
                 <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
