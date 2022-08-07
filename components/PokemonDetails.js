@@ -219,7 +219,7 @@ const PokemonDetails = ({ route, navigation }) => {
             <Text style={{ color: backgroundColors[types[0]], fontWeight: 'bold', fontSize: 20, padding: 18, textAlign: 'center' }}>
               {types[1] && emojis[types[1]]} {genus} {emojis[types[0]]}
             </Text>
-            <Text selectable={true} selectionColor={'gray'}>
+            <Text selectable={true} selectionColor={'gray'} style={{textAlign:'left'}}>
               {flavor}
             </Text>
 

@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "icon": "./assets/ico.png",
+      "icon": "./assets/icon.png",
       "versionCode": 14,
       "package": "com.alexfg.voicedex"
     },

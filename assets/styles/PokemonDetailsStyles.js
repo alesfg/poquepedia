@@ -15,9 +15,9 @@ export const styles = StyleSheet.create({
       justifyContent: 'space-between'
     },
     infoCard: {
-      margin: 10,
+      margin: 14,
+      marginBottom: 20,
       backgroundColor: '#FFFFFF',
-      // height: '58%',
       flex: 1,
       borderRadius: 10,
       alignItems: 'center',
