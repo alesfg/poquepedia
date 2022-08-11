@@ -23,6 +23,12 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 20,
     },
+    arrows: {
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'space-between',
+      paddingHorizontal: 60
+    },
     row: {
       flexDirection: "row",
       flexWrap: "wrap",
