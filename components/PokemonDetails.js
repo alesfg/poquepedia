@@ -163,17 +163,26 @@ const PokemonDetails = ({ route, navigation }) => {
         />
       </View>
       {/* PREVIOUS/NEXT POKEMON */}
-      <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between', paddingHorizontal: 70, paddingBottom: 30 }}>
+      <View style={styles.arrows}>
         {id > 1 &&
-          <TouchableOpacity style={{ alignSelf: 'flex-start' }}
+          <TouchableOpacity
+           style={{ alignSelf: 'flex-start' }}
             onPress={() => goPreviousPokemon()}
           >
             <AntDesign name="left" size={24} color="#fff" />
           </TouchableOpacity>
         }
+        {id == 1 &&
+          <TouchableOpacity
+           style={{ alignSelf: 'flex-start' }}
+          >
+            <AntDesign name="left" size={24} color="transparent" />
+          </TouchableOpacity>
+        }
 
         {id < 899 &&
-          <TouchableOpacity style={{ right: 0, position: 'absolute', paddingRight: 70 }}
+          <TouchableOpacity 
+            style={{ alignSelf:'flex-end' }}
             onPress={() => goNextPokemon()}
           >
             <AntDesign name="right" size={24} color="#fff" />
@@ -219,7 +228,7 @@ const PokemonDetails = ({ route, navigation }) => {
             <Text style={{ color: backgroundColors[types[0]], fontWeight: 'bold', fontSize: 20, padding: 18, textAlign: 'center' }}>
               {types[1] && emojis[types[1]]} {genus} {emojis[types[0]]}
             </Text>
-            <Text selectable={true} selectionColor={'gray'} style={{textAlign:'left'}}>
+            <Text numberOfLines={2} ellipsizeMode='tail' selectable={true} selectionColor={'gray'} style={{backgroundColor:'yellow'}}>
               {flavor}
             </Text>
 
@@ -242,7 +251,7 @@ const PokemonDetails = ({ route, navigation }) => {
             }
             {/* STATS */}
             {height > 800 ?
-            <View style={{ marginTop: 5 }}>
+            <View style={{ marginTop: 5, width:'100%', alignSelf:'center' }}>
               <View style={styles.row}>
                 <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
                 <Progress step={hp} stat={'hp'} height={6} />
