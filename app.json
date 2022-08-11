@@ -2,7 +2,7 @@
   "expo": {
     "name": "VoiceDex - Pokedex con voz",
     "slug": "voiceDex",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,8 +25,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "icon": "./assets/ico.png",
-      "versionCode": 6,
+      "icon": "./assets/icon.png",
+      "versionCode": 14,
       "package": "com.alexfg.voicedex"
     },
     "web": {
