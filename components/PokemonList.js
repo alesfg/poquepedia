@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image, View, FlatList } from 'react-native';
+import { Text, Image, View, FlatList, Dimensions } from 'react-native';
 import { styles } from '../assets/styles/PokemonListStyles'
 import pokegif from '../assets/chiko.gif'
 import pokeico from '../assets/navicon.png'
@@ -19,6 +19,9 @@ export default function PokemonList({ navigation }) {
     )
   }
 
+const { width } = Dimensions.get('window');
+  
+
   return (
     <View style={styles.container}>
         <FlatList
@@ -36,7 +39,7 @@ export default function PokemonList({ navigation }) {
             source={pokegif}
             style={{
               height: 179,
-              width: 350,
+              width: width,
               marginTop:10,
               marginBottom:30
             }}
@@ -48,7 +51,7 @@ export default function PokemonList({ navigation }) {
           contentContainerStyle={{ alignItems: 'center' }}
           onEndReachedThreshold={0.2}
           onEndReached={()=>{
-            loadMore()
+            // loadMore() no existe
           }}
           renderItem={renderData}
         />
