@@ -49,12 +49,13 @@ export const styles = StyleSheet.create({
       marginTop: -170
     },
     sprite: {
-      width: 60,
-      height: 60
+      width: 90,
+      height: 90
     },
     type: {
       borderRadius: 10,
       padding: 5,
+      marginVertical:7,
       marginHorizontal: 5,
       textTransform: 'capitalize'
     },
@@ -76,8 +77,7 @@ export const styles = StyleSheet.create({
       opacity: 0.7
     },
     fav: {
-      position: 'absolute',
-      top: 100,
+      top: 30,
       opacity: 0.8,
       marginLeft: 35,
       width: '82%',
