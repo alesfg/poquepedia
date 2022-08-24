@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import { View, Image } from 'react-native'
+import { Image } from 'react-native'
 
 import poke from './assets/navicon.png'
 
