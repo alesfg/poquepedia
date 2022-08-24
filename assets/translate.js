@@ -24,14 +24,14 @@ export const translateType = (type) => {
 
 export const translateHabitat = (habitat) => {
   const habitats = {
-    mountain : "las montañas  🗻",
-    'waters-edge' : "zonas de agua  🚿",
-    forest : "los bosques   🌲",
+    mountain : "montañas  🗻",
+    'waters-edge' : "agua  🚿",
+    forest : "bosque   🌲",
     'rough-terrain' : "terreno accidentado  👺",
     grassland : "praderas  🌄",
     cave : "cuevas  🦇",
     rare : "lugares extraños  👽",
-    sea : "el mar  🌊",
+    sea : "mar  🌊",
     urban: "zonas urbanas  🌆"
   }
   return  habitats[habitat];

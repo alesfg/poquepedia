@@ -29,6 +29,8 @@ const PokemonDetails = ({ route, navigation }) => {
   const [hp, sethp] = useState()
   const [attack, setattack] = useState()
   const [defense, setdefense] = useState()
+  const [specialattack, setspecialattack] = useState()
+  const [specialdefense, setspecialdefense] = useState()
   const [speed, setspeed] = useState()
   const [islegendary, setislegendary] = useState()
   const [tinyGifUri, settinyGifUri] = useState(null)
@@ -77,6 +79,8 @@ const PokemonDetails = ({ route, navigation }) => {
       sethp(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0].pokemon_v2_pokemonstats[0].base_stat)
       setattack(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0].pokemon_v2_pokemonstats[1].base_stat)
       setdefense(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0].pokemon_v2_pokemonstats[2].base_stat)
+      setspecialattack(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0].pokemon_v2_pokemonstats[3].base_stat)
+      setspecialdefense(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0].pokemon_v2_pokemonstats[4].base_stat)
       setspeed(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0].pokemon_v2_pokemonstats[5].base_stat)
       setislegendary(data.pokemon_v2_pokemonspecies[0].is_legendary)
       setweight(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0]?.weight)
@@ -134,26 +138,35 @@ const PokemonDetails = ({ route, navigation }) => {
             </Text>
           }
         </View>
-        <Text style={{ fontWeight: 'bold', fontSize: 24, color: "white", alignSelf: 'flex-end', paddingRight: 30 }}>
-          # {id.toString().length == 1 ? '00' : ''}
-          {id.toString().length == 2 ? '0' : ''}
-          {id}
-        </Text>
+        <View style={{flexDirection:'row', alignItems:'center'}}>
+          {/* LEGENDARIO */}
+          {islegendary &&
+            <View style={{ backgroundColor: '#000', borderRadius: 5, marginRight: 10, alignSelf:'center', top:2 }}>
+              <Text style={{ color: '#F9CF30', fontWeight: 'bold', textAlignVertical: 'center', paddingHorizontal: 7, paddingVertical: 2 }}>LEGENDARIO</Text>
+            </View>
+          }
+          <Text style={{ fontWeight: 'bold', fontSize: 24, color: "white", alignSelf: 'flex-end', paddingRight: 30 }}>
+            # {id.toString().length == 1 ? '00' : ''}
+            {id.toString().length == 2 ? '0' : ''}
+            {id}
+          </Text>
+        </View>
       </View>
       {/* SCROLLVIEW */}
-        {/* FAV and RANDOM*/}
-        <View style={styles.fav}>
+      {/* FAV and RANDOM and LEGENDARY*/}
+      <View style={styles.fav}>
 
-          <TouchableOpacity
-            onPress={goRandomPokemon}>
-            <AntDesign name="retweet" size={35} color="#fff" />
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={goRandomPokemon}>
+          <AntDesign name="retweet" size={35} color="#fff" />
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => toggleFav()}>
-            <AntDesign name="heart" size={35} color="red" />
-          </TouchableOpacity>
-        </View>
-        <ScrollView>
+
+        <TouchableOpacity onPress={() => toggleFav()}>
+          <AntDesign name="heart" size={35} color="red" />
+        </TouchableOpacity>
+      </View>
+      <ScrollView>
         {/* BG IMG */}
         <View style={{ opacity: 0.12, paddingTop: 20 }}>
           <ImageBackground source={pokeball_bg} style={{
@@ -190,88 +203,67 @@ const PokemonDetails = ({ route, navigation }) => {
           }
 
         </View>
-        {/* LEGENDARIO */}
-        {islegendary &&
-          <View style={{ position: 'absolute', right: 99, top: 48 }}>
-            <AntDesign name="dingding" size={24} color='#000' />
-          </View>
-        }
         {/* INFOCARD */}
         <View style={styles.infoCard}>
-            <Image
-              source={{ uri: imageUri }}
-              style={styles.image}
-            />
-            <View style={{ flexDirection: 'row' }}>
-              <View>
-                {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0])} </Text>}
-              </View>
-              <View>
-                {types[1] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[1]] }]}> {translateType(types[1])} </Text>}
-              </View>
+          <Image
+            source={{ uri: imageUri }}
+            style={styles.image}
+          />
+          <View style={{ flexDirection: 'row' }}>
+            <View>
+              {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0])} </Text>}
             </View>
-            {/* LOADING */}
-            {!(data && Object.keys(data)?.length > 0) ?
-              <View>
-                <Image
-                  source={pokegif}
-                  style={{
-                    height: 179,
-                    width: 320,
-                    marginTop: 100
-                  }}
-                />
-              </View>
-              :
-              <View>
-                {/* FLAVOR GENUS */}
-                <Text style={{ color: backgroundColors[types[0]], fontWeight: 'bold', fontSize: 20, padding: 18, textAlign: 'center' }}>
-                  {types[1] && emojis[types[1]]} {genus} {emojis[types[0]]}
+            <View>
+              {types[1] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[1]] }]}> {translateType(types[1])} </Text>}
+            </View>
+          </View>
+          {/* LOADING */}
+          {!(data && Object.keys(data)?.length > 0) ?
+            <View>
+              <Image
+                source={pokegif}
+                style={{
+                  height: 179,
+                  width: 320,
+                  marginTop: 100
+                }}
+              />
+            </View>
+            :
+            <View>
+              {/* FLAVOR GENUS */}
+              <Text style={[{ color: backgroundColors[types[0]] }, styles.genus]}>
+                {types[1] && emojis[types[1]]} {genus} {emojis[types[0]]}
+              </Text>
+              <View style={{ maxWidth: 310, height: 80 }}>
+                <Text numberOfLines={3} ellipsizeMode='tail' selectable={true} selectionColor={'gray'} style={{ textAlign: 'justify' }}>
+                  {flavor}
                 </Text>
-                <View style={{maxWidth: 310, height:80}}>
-                  <Text numberOfLines={3} ellipsizeMode='tail' selectable={true} selectionColor={'gray'} style={{textAlign:'justify'}}>
-                    {flavor}
-                  </Text>
-                </View>
+              </View>
 
-                {/* SPRITES */}
-                {id < 650 &&
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
-                    <Image
-                      source={{ uri: tinyGifUri }} style={styles.sprite} resizeMode='contain' />
-                    <Image
-                      source={{ uri: tinyBackGifUri }} style={styles.sprite} resizeMode='contain' />
-                  </View>
-                }
-                {id > 649 &&
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
-                    <Image
-                      source={{ uri: tinyImgUri }} style={styles.sprite} resizeMode='contain' />
-                    <Image
-                      source={{ uri: tinyBackImgUri }} style={styles.sprite} resizeMode='contain' />
-                  </View>
-                }
-                {/* STATS */}
+              {/* SPRITES */}
+              {id < 650 &&
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
+                  <Image
+                    source={{ uri: tinyGifUri }} style={styles.sprite} resizeMode='contain' />
+                  <Image
+                    source={{ uri: tinyBackGifUri }} style={styles.sprite} resizeMode='contain' />
+                </View>
+              }
+              {id > 649 &&
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
+                  <Image
+                    source={{ uri: tinyImgUri }} style={styles.sprite} resizeMode='contain' />
+                  <Image
+                    source={{ uri: tinyBackImgUri }} style={styles.sprite} resizeMode='contain' />
+                </View>
+              }
+              {/* STATS */}
+              <View>
                 <View>
-                  <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
-                      <Progress step={hp} stat={'hp'} height={6} />
-                    </View>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['attack'] }]}>Ataque</Text>
-                      <Progress step={attack} stat={'attack'} height={6} />
-                    </View>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['defense'] }]}>Defensa</Text>
-                      <Progress step={defense} stat={'defense'} height={6} />
-                    </View>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['speed'] }]}>Velocidad</Text>
-                      <Progress step={speed} stat={'speed'} height={6} />
-                    </View>
-                  </View>
-                  <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
+                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>Estadísticas</Text>
+                </View>
+                <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
                   <View style={styles.row}>
                     <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
                     <Progress step={hp} stat={'hp'} height={6} />
@@ -285,51 +277,65 @@ const PokemonDetails = ({ route, navigation }) => {
                     <Progress step={defense} stat={'defense'} height={6} />
                   </View>
                   <View style={styles.row}>
+                    <Text style={[styles.stats, { color: stats['specialAttack'] }]}>Ataque especial</Text>
+                    <Progress step={specialattack} stat={'specialAttack'} height={6} />
+                  </View>
+                  <View style={styles.row}>
+                    <Text style={[styles.stats, { color: stats['specialDefense'] }]}>Defensa especial</Text>
+                    <Progress step={specialdefense} stat={'specialDefense'} height={6} />
+                  </View>
+                  <View style={styles.row}>
                     <Text style={[styles.stats, { color: stats['speed'] }]}>Velocidad</Text>
                     <Progress step={speed} stat={'speed'} height={6} />
                   </View>
                 </View>
-                <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
-                      <Progress step={hp} stat={'hp'} height={6} />
-                    </View>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['attack'] }]}>Ataque</Text>
-                      <Progress step={attack} stat={'attack'} height={6} />
-                    </View>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['defense'] }]}>Defensa</Text>
-                      <Progress step={defense} stat={'defense'} height={6} />
-                    </View>
-                    <View style={styles.row}>
-                      <Text style={[styles.stats, { color: stats['speed'] }]}>Velocidad</Text>
-                      <Progress step={speed} stat={'speed'} height={6} />
-                    </View>
-                  </View>
-                  </View>
-                  
-                {/* PESO ALTURA */}
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}>
-                  <View style={{ marginRight: 30 }}>
-                    <Text style={{ fontWeight: 'bold', color: colors[types[0]] }}>{wgpoke / 10} kg</Text>
-                  </View>
-                  <View style={{ width: 2, height: 20, backgroundColor: backgroundColors[types[0]] }}>
-                    {/* Separator */}
-                  </View>
-                  <View style={{ marginLeft: 30 }}>
-                    <Text style={{ fontWeight: 'bold', color: colors[types[0]] }}>{hgpoke / 10} m</Text>
+              </View>
+
+              {/* PESO ALTURA */}
+              <View>
+                <Text style={[{ color: colors[types[0]] }, styles.genus]}>Dimensiones</Text>
+              </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 5, marginBottom: 15 }}>
+                <View>
+                  <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>Peso</Text>
+                  <View style={{ borderRadius: 10, padding: 5, backgroundColor: backgroundColors[types[0]], marginTop: 10 }}>
+                    <Text style={{ textAlign: 'center', color: '#000000' }}>
+                      {wgpoke / 10} kg
+                    </Text>
                   </View>
                 </View>
 
-                {/* MORE DETAILS */}
-                <TouchableOpacity>
-                  <View style={{ marginTop: 15, backgroundColor: '#BFD0CA', borderRadius: 10, width: 150, display: 'flex', alignSelf: 'center' }}>
-                    <Text style={{ textAlign: 'center', padding: 10 }}>Más detalles</Text>
+                <View>
+                  <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>Altura</Text>
+                  <View style={{ borderRadius: 10, padding: 5, backgroundColor: backgroundColors[types[0]], marginTop: 10 }}>
+                    <Text style={{ textAlign: 'center', color: '#000000' }}>
+
+                      {hgpoke / 10} m
+                    </Text>
                   </View>
-                </TouchableOpacity>
+                </View>
               </View>
-            }
+
+              {/* HABITAT */}
+              {habitat &&
+                <View>
+                  <View>
+                    <Text style={[{ color: colors[types[0]] }, styles.genus]}>Hábitat</Text>
+                  </View>
+                  <View>
+                    <Text style={{ textAlign: 'center', textTransform: 'capitalize' }}>{translateHabitat(habitat)}</Text>
+                  </View>
+                </View>
+              }
+
+              {/* MORE DETAILS */}
+              <TouchableOpacity>
+                <View style={{ marginTop: 15, backgroundColor: '#BFD0CA', borderRadius: 10, width: 150, display: 'flex', alignSelf: 'center' }}>
+                  <Text style={{ textAlign: 'center', padding: 10 }}>VoiceDex</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          }
         </View>
       </ScrollView>
 
@@ -346,6 +352,3 @@ const PokemonDetails = ({ route, navigation }) => {
 }
 
 export default PokemonDetails
-const { width, height } = Dimensions.get('window');
-
-console.log("wid: " + width, "hei: " + height)

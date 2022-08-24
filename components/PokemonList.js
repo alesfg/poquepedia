@@ -48,6 +48,9 @@ const { width } = Dimensions.get('window');
             }
           numColumns={3}
           initialNumToRender={15}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={6}
+          updateCellsBatchingPeriod={400}
           contentContainerStyle={{ alignItems: 'center' }}
           onEndReachedThreshold={0.2}
           onEndReached={()=>{
