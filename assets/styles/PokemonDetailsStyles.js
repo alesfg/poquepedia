@@ -35,6 +35,13 @@ export const styles = StyleSheet.create({
       height: 30,
       alignItems: 'center'
     },
+    genus: {
+      fontWeight: 'bold',
+      fontSize: 20,
+      marginTop: 20,
+      marginBottom:15,
+      textAlign: 'center'
+    },
     stats: {
       left: 0,
       marginLeft: 1,
@@ -43,18 +50,28 @@ export const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 16
     },
+    span: {
+      fontWeight:'bold',
+      fontSize:16,
+      marginHorizontal:10
+    },
     image: {
       width: 200,
       height: 200,
       marginTop: -170
     },
     sprite: {
-      width: 60,
-      height: 60
+      width: 90,
+      height: 90
+    },
+    subtitle: {
+      fontSize: 20,
+      textAlign:'center'
     },
     type: {
       borderRadius: 10,
       padding: 5,
+      marginVertical:7,
       marginHorizontal: 5,
       textTransform: 'capitalize'
     },
@@ -76,9 +93,7 @@ export const styles = StyleSheet.create({
       opacity: 0.7
     },
     fav: {
-      position: 'absolute',
-      top: 100,
-      opacity: 0.8,
+      top: 30,
       marginLeft: 35,
       width: '82%',
       flexDirection: 'row',

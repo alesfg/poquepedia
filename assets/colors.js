@@ -62,10 +62,12 @@ const colors= {
   };
 
   const stats= {
-    hp: '#74CB48',
+    hp: '#FE0003',
     attack: '#F57D31',
-    defense: '#4C91B2',
-    speed: '#F2CB55'
+    defense: '#F2CB55',
+    specialAttack: '#3192FF',
+    specialDefense: '#7AC551',
+    speed: '#D35AA5'
   };
 
   export { colors, backgroundColors, emojis, stats };
