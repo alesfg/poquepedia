@@ -6,7 +6,7 @@ import Progress from './ProgressBars';
 import pokeball_bg from '../assets/pokeball_bg.png'
 import pokegif from '../assets/image11.gif'
 import pokeico from '../assets/navicon.png'
-import { translateHabitat, translateType } from '../assets/translate'
+import { translateHabitat, translateType, code, voice } from '../assets/translate'
 import { styles } from '../assets/styles/PokemonDetailsStyles';
 import * as Speech from 'expo-speech';
 import { AntDesign } from '@expo/vector-icons';
@@ -34,6 +34,8 @@ const PokemonDetails = ({ route, navigation }) => {
   const [islegendary, setislegendary] = useState()
   const [tinyGifUri, settinyGifUri] = useState(null)
   const [tinyBackGifUri, settinyBackGifUri] = useState(null)
+  const [tinyshinyUri, settinyshinyUri] = useState(null)
+  const [tinyBackShinyUri, settinyBackShinyUri] = useState(null)
   const [tinyImgUri, settinyImgUri] = useState(null)
   const [tinyBackImgUri, settinyBackImgUri] = useState(null)
   const [wgpoke, setweight] = useState()
@@ -47,25 +49,21 @@ const PokemonDetails = ({ route, navigation }) => {
   };
 
   const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+  const iconuri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${id}.png`
 
-  const speak = () => {
+  const speak = (code, voice) => {
     Speech.speak(name + "." +
       data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].flavor_text, {
       rate: 1.1,
-      language: 'es-ES',
+      language: code,
       pitch: 1,
-      voice: "es-es-x-eed-network"
+      voice: voice
     });
   };
+
   const { loading, error, data } = useQuery(GET_DETALLES, {
     variables: { "id": id, "lang": parseInt(selectedLanguage) }
   });
-
-  if (!loading) {
-    if (data && Object.keys(data)?.length > 0 && name != undefined) {
-      speak();
-    }
-  }
 
   useEffect(() => {
     readItemFromStorage();
@@ -94,15 +92,22 @@ const PokemonDetails = ({ route, navigation }) => {
       settinyBackGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${id}.gif`)
       settinyImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`)
       settinyBackImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`)
+      settinyshinyUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${id}.gif`)
+      settinyBackShinyUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${id}.gif`)
       navigation.addListener('beforeRemove', (e) => {
         Speech.stop()
       })
-      // getFavs(id)
     }
     if (Speech.isSpeakingAsync) {
       Speech.stop()
     }
   }, [data])
+
+  if (!loading) {
+    if (data && Object.keys(data)?.length > 0 && name != undefined) {
+      speak(code(selectedLanguage), voice(selectedLanguage));
+    }
+  }
 
   const goPokemonList = () => { navigation.navigate("Pokemon List") }
   const goNextPokemon = () => {
@@ -117,7 +122,7 @@ const PokemonDetails = ({ route, navigation }) => {
   }
   const goRandomPokemon = () => {
     navigation.navigate("Pokemon Details", {
-      id: Math.ceil(Math.random() * 840)
+      id: Math.ceil(Math.random() * 897)
     })
   }
 
@@ -193,7 +198,7 @@ const PokemonDetails = ({ route, navigation }) => {
             </TouchableOpacity>
           }
 
-          {id < 899 &&
+          {id < 898 &&
             <TouchableOpacity
               style={{ alignSelf: 'flex-end' }}
               onPress={() => goNextPokemon()}
@@ -214,10 +219,10 @@ const PokemonDetails = ({ route, navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity>
-              <AntDesign name="heart" size={30} 
-              color={'#0B0B0B'}
+              <AntDesign name="heart" size={30}
+                color={'#0B0B0B'}
               // color={fav !== true ?  '#0B0B0B' : 'red'}
-               />
+              />
             </TouchableOpacity>
 
           </View>
@@ -244,7 +249,8 @@ const PokemonDetails = ({ route, navigation }) => {
                   height: 179,
                   width: 320,
                   marginTop: 50,
-                  paddingBottom: 200
+                  paddingBottom: 300,
+                  marginBottom:100
                 }}
               />
             </View>
@@ -277,6 +283,7 @@ const PokemonDetails = ({ route, navigation }) => {
                     source={{ uri: tinyBackImgUri }} style={styles.sprite} resizeMode='contain' />
                 </View>
               }
+
               {/* STATS */}
               <View>
                 <View>
@@ -336,7 +343,7 @@ const PokemonDetails = ({ route, navigation }) => {
 
               {/* HABITAT */}
               {habitat &&
-                <View>
+                <View style={{paddingBottom:30}}>
                   <View>
                     <Text style={[{ color: colors[types[0]] }, styles.genus]}>Hábitat</Text>
                   </View>
@@ -345,6 +352,24 @@ const PokemonDetails = ({ route, navigation }) => {
                   </View>
                 </View>
               }
+
+              {/* Shiny Sprites */}
+              {id < 650 &&
+                <View>
+                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>Forma Shiny</Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
+                    <Image
+                      source={{ uri: tinyshinyUri }} style={styles.sprite} resizeMode='contain' />
+                    <Image
+                      source={{ uri: tinyBackShinyUri }} style={styles.sprite} resizeMode='contain' />
+                  </View>
+                </View>
+              }
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 15, top: 16, zIndex:1 }}>
+                    <Image
+                      source={{ uri: iconuri }} style={{height:56,width:68}} resizeMode='contain' />
+                    
+                  </View>
 
               {/* MORE DETAILS */}
               <TouchableOpacity>

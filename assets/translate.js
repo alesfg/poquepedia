@@ -57,3 +57,32 @@ export const translateShape = (shape) => {
   return  shapes[shape];
 }
 
+export const code = (lang) => {
+  const code = {
+    "7" : 'es-ES',
+    "9" : 'en-GB',
+    "5" : 'fr-FR',
+    "6" : 'de-DE',
+    "8" : 'it-IT',
+    "1" : 'ja-JP',
+    "12" : 'zh-CN',
+    "4" : 'zh-TW',
+    "3" : 'ko-KR'
+  }
+  return  code[lang];
+}
+
+export const voice = (lang) => {
+  const voice = {
+    "7" : "es-es-x-eed-network",
+    "9" : 'en-gb-x-gba-local',
+    "5" : "fr-fr-x-vlf-network",
+    "6" : "de-de-x-deb-network",
+    "8" : "it-it-x-itd-local",
+    "1" : "ja-jp-x-jab-local",
+    "12" : "cmn-cn-x-cce-local",
+    "4" : "cmn-tw-x-cte-network",
+    "3" : "ko-kr-x-ism-local"
+  }
+  return  voice[lang];
+}
