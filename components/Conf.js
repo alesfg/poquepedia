@@ -5,7 +5,7 @@ import pokeico from '../assets/navicon.png'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function Conf({ navigation }) {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState("7");
   const { getItem, setItem } = useAsyncStorage('@lang');
 
   const readItemFromStorage = async () => {
@@ -40,7 +40,6 @@ useEffect(() => {
         onValueChange={(itemValue, itemIndex) =>{
           setlang(itemValue)
         }}
-        mode={"dropdown"}
         placeholder={"Set your language"}
         >
         <Picker.Item label="Español" value={"7"} />

@@ -17,7 +17,6 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 const PokemonDetails = ({ route, navigation }) => {
 
   const { getItem: getLang } = useAsyncStorage('@lang');
-  const { getItem: getFav, setItem } = useAsyncStorage('@fav');
 
 
   const { id } = route.params
@@ -39,7 +38,6 @@ const PokemonDetails = ({ route, navigation }) => {
   const [tinyBackImgUri, settinyBackImgUri] = useState(null)
   const [wgpoke, setweight] = useState()
   const [hgpoke, setheight] = useState()
-  const [fav, setFav] = useState()
 
   const [selectedLanguage, setSelectedLanguage] = useState()
 
@@ -47,10 +45,6 @@ const PokemonDetails = ({ route, navigation }) => {
     const lang = await getLang();
     setSelectedLanguage(lang);
   };
-
-  const toggleFav = () => {
-
-  }
 
   const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
@@ -62,7 +56,6 @@ const PokemonDetails = ({ route, navigation }) => {
       pitch: 1,
       voice: "es-es-x-eed-network"
     });
-    console.log(Speech.getAvailableVoicesAsync()[1])
   };
   const { loading, error, data } = useQuery(GET_DETALLES, {
     variables: { "id": id, "lang": parseInt(selectedLanguage) }
@@ -217,13 +210,16 @@ const PokemonDetails = ({ route, navigation }) => {
 
             <TouchableOpacity
               onPress={goRandomPokemon}>
-              <AntDesign name="retweet" size={35} color="#000" />
+              <AntDesign name="retweet" size={25} color="#000" />
             </TouchableOpacity>
 
-
-            <TouchableOpacity onPress={() => toggleFav()}>
-              <AntDesign name="heart" size={35} color="red" />
+            <TouchableOpacity>
+              <AntDesign name="heart" size={30} 
+              color={'#0B0B0B'}
+              // color={fav !== true ?  '#0B0B0B' : 'red'}
+               />
             </TouchableOpacity>
+
           </View>
           <Image
             source={{ uri: imageUri }}
@@ -247,8 +243,8 @@ const PokemonDetails = ({ route, navigation }) => {
                 style={{
                   height: 179,
                   width: 320,
-                  marginTop: 300,
-                  paddingBottom: 100
+                  marginTop: 50,
+                  paddingBottom: 200
                 }}
               />
             </View>
