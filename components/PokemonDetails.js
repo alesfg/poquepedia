@@ -40,6 +40,14 @@ const PokemonDetails = ({ route, navigation }) => {
   const [tinyBackImgUri, settinyBackImgUri] = useState(null)
   const [wgpoke, setweight] = useState()
   const [hgpoke, setheight] = useState()
+  const [firstPokeEvoChain, setFirstPokeEvoChain] = useState()
+  const [secondPokeEvoChain, setSecondPokeEvoChain] = useState()
+  const [thirdPokeEvoChain, setThirdPokeEvoChain] = useState()
+  const [firstIdChain, setFirstIdChain] = useState()
+  const [secondIdChain, setSecondIdChain] = useState()
+  const [thirdIdChain, setThirdIdChain] = useState()
+  const [secondLevelEvoChain, setSecondLevelEvoChain] = useState()
+  const [thirdLevelEvoChain, setThirdLevelEvoChain] = useState()
 
   const [selectedLanguage, setSelectedLanguage] = useState()
 
@@ -70,6 +78,11 @@ const PokemonDetails = ({ route, navigation }) => {
   }, [])
 
   useEffect(() => {
+    
+  }, [selectedLanguage])
+  
+
+  useEffect(() => {
     if (route.params?.type) {
       settypes([route.params.type])
     }
@@ -88,12 +101,23 @@ const PokemonDetails = ({ route, navigation }) => {
       setislegendary(data.pokemon_v2_pokemonspecies[0].is_legendary)
       setweight(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0]?.weight)
       setheight(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0]?.height)
+      setFirstPokeEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[0]?.name)
+      setSecondPokeEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.name)
+      setThirdPokeEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.name)
+      setFirstIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[0]?.id)
+      setSecondIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.id)
+      setThirdIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.id)
+      setSecondLevelEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.pokemon_v2_pokemonevolutions_aggregate.nodes[0].min_level)
+      setThirdLevelEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.pokemon_v2_pokemonevolutions_aggregate.nodes[0].min_level)
       settinyGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`)
       settinyBackGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${id}.gif`)
       settinyImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`)
       settinyBackImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`)
       settinyshinyUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${id}.gif`)
       settinyBackShinyUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${id}.gif`)
+
+
+
       navigation.addListener('beforeRemove', (e) => {
         Speech.stop()
       })
@@ -249,8 +273,8 @@ const PokemonDetails = ({ route, navigation }) => {
                   height: 179,
                   width: 320,
                   marginTop: 50,
-                  paddingBottom: 300,
-                  marginBottom:100
+                  paddingBottom: 270,
+                  marginBottom: 90
                 }}
               />
             </View>
@@ -341,9 +365,20 @@ const PokemonDetails = ({ route, navigation }) => {
                 </View>
               </View>
 
+              {/* CHAIN EVO */}
+              <View>
+                <Text style={[{ color: colors[types[0]] }, styles.genus]}> Evoluciones </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around',alignItems:'center', paddingBottom: 15, paddingTop: 15 }}>
+                  <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${firstIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                  <Text>{secondLevelEvoChain}</Text>
+                  <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${secondIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                  <Text>{thirdLevelEvoChain}</Text>
+                  <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${thirdIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                </View>
+              </View>
               {/* HABITAT */}
               {habitat &&
-                <View style={{paddingBottom:30}}>
+                <View style={{ paddingBottom: 30 }}>
                   <View>
                     <Text style={[{ color: colors[types[0]] }, styles.genus]}>Hábitat</Text>
                   </View>
@@ -365,11 +400,11 @@ const PokemonDetails = ({ route, navigation }) => {
                   </View>
                 </View>
               }
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 15, top: 16, zIndex:1 }}>
-                    <Image
-                      source={{ uri: iconuri }} style={{height:56,width:68}} resizeMode='contain' />
-                    
-                  </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 15, top: 16, zIndex: 1 }}>
+                <Image
+                  source={{ uri: iconuri }} style={{ height: 56, width: 68 }} resizeMode='contain' />
+
+              </View>
 
               {/* MORE DETAILS */}
               <TouchableOpacity>

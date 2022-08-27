@@ -5,6 +5,19 @@ query getDetalles($id: Int, $lang: Int) {
   pokemon_v2_pokemonspecies(where: {id: {_eq: $id}}) {
     pokemon_v2_pokemonspeciesflavortexts(where: {language_id: {_eq: $lang}}, limit: 1) {
       flavor_text
+    pokemon_v2_pokemonspecy {
+        pokemon_v2_evolutionchain {
+          pokemon_v2_pokemonspecies {
+            name
+            id
+            pokemon_v2_pokemonevolutions_aggregate {
+              nodes {
+                min_level
+              }
+            }
+          }
+        }
+      }
     }
     pokemon_v2_pokemonshape {
       name
