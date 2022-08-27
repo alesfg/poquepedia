@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, Image, ImageBackground, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
-
-import { useQuery, gql } from '@apollo/client';
+import { Text, View, Image, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
+import { useQuery } from '@apollo/client';
 import { backgroundColors, stats, emojis, colors } from '../assets/colors'
 import Progress from './ProgressBars';
 import pokeball_bg from '../assets/pokeball_bg.png'
@@ -11,14 +10,15 @@ import { translateHabitat, translateType } from '../assets/translate'
 import { styles } from '../assets/styles/PokemonDetailsStyles';
 import * as Speech from 'expo-speech';
 import { AntDesign } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { GET_DETALLES } from '../querys/queryDetails';
-
-const STORAGE_FAV = '@favourites';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 
 const PokemonDetails = ({ route, navigation }) => {
+
+  const { getItem: getLang } = useAsyncStorage('@lang');
+  const { getItem: getFav, setItem } = useAsyncStorage('@fav');
+
 
   const { id } = route.params
   const [types, settypes] = useState([])
@@ -39,11 +39,18 @@ const PokemonDetails = ({ route, navigation }) => {
   const [tinyBackImgUri, settinyBackImgUri] = useState(null)
   const [wgpoke, setweight] = useState()
   const [hgpoke, setheight] = useState()
-  const [fav, setFav] = useState(false)
+  const [fav, setFav] = useState()
 
-  const { loading, error, data } = useQuery(GET_DETALLES, {
-    variables: { "_eq": id },
-  });
+  const [selectedLanguage, setSelectedLanguage] = useState()
+
+  const readItemFromStorage = async () => {
+    const lang = await getLang();
+    setSelectedLanguage(lang);
+  };
+
+  const toggleFav = () => {
+
+  }
 
   const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
@@ -55,18 +62,23 @@ const PokemonDetails = ({ route, navigation }) => {
       pitch: 1,
       voice: "es-es-x-eed-network"
     });
+    console.log(Speech.getAvailableVoicesAsync()[1])
   };
+  const { loading, error, data } = useQuery(GET_DETALLES, {
+    variables: { "id": id, "lang": parseInt(selectedLanguage) }
+  });
 
   if (!loading) {
     if (data && Object.keys(data)?.length > 0 && name != undefined) {
-      console.log("EL loading mas data >")
-
       speak();
     }
   }
 
   useEffect(() => {
-    console.log("Use Effect data")
+    readItemFromStorage();
+  }, [])
+
+  useEffect(() => {
     if (route.params?.type) {
       settypes([route.params.type])
     }
@@ -115,11 +127,18 @@ const PokemonDetails = ({ route, navigation }) => {
       id: Math.ceil(Math.random() * 840)
     })
   }
-  const toggleFav = async () => {
-    /* await AsyncStorage.setItem(STORAGE_FAV,`${id}`);
-    const storageSample = await AsyncStorage.getItem(STORAGE_FAV)
-    alert(storageSample) */
+
+  if (error) {
+    console.error(error)
+    return (
+      <View>
+        <Text>
+          Error!
+        </Text>
+      </View>
+    )
   }
+
 
 
   return (
@@ -138,10 +157,10 @@ const PokemonDetails = ({ route, navigation }) => {
             </Text>
           }
         </View>
-        <View style={{flexDirection:'row', alignItems:'center'}}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           {/* LEGENDARIO */}
           {islegendary &&
-            <View style={{ backgroundColor: '#000', borderRadius: 5, marginRight: 10, alignSelf:'center', top:2 }}>
+            <View style={{ backgroundColor: '#000', borderRadius: 5, marginRight: 10, alignSelf: 'center', top: 2 }}>
               <Text style={{ color: '#F9CF30', fontWeight: 'bold', textAlignVertical: 'center', paddingHorizontal: 7, paddingVertical: 2 }}>LEGENDARIO</Text>
             </View>
           }
@@ -153,20 +172,8 @@ const PokemonDetails = ({ route, navigation }) => {
         </View>
       </View>
       {/* SCROLLVIEW */}
-      {/* FAV and RANDOM and LEGENDARY*/}
-      <View style={styles.fav}>
-
-        <TouchableOpacity
-          onPress={goRandomPokemon}>
-          <AntDesign name="retweet" size={35} color="#fff" />
-        </TouchableOpacity>
-
-
-        <TouchableOpacity onPress={() => toggleFav()}>
-          <AntDesign name="heart" size={35} color="red" />
-        </TouchableOpacity>
-      </View>
       <ScrollView>
+
         {/* BG IMG */}
         <View style={{ opacity: 0.12, paddingTop: 20 }}>
           <ImageBackground source={pokeball_bg} style={{
@@ -205,6 +212,19 @@ const PokemonDetails = ({ route, navigation }) => {
         </View>
         {/* INFOCARD */}
         <View style={styles.infoCard}>
+          {/* FAV and RANDOM*/}
+          <View style={styles.fav}>
+
+            <TouchableOpacity
+              onPress={goRandomPokemon}>
+              <AntDesign name="retweet" size={35} color="#000" />
+            </TouchableOpacity>
+
+
+            <TouchableOpacity onPress={() => toggleFav()}>
+              <AntDesign name="heart" size={35} color="red" />
+            </TouchableOpacity>
+          </View>
           <Image
             source={{ uri: imageUri }}
             style={styles.image}
@@ -218,14 +238,17 @@ const PokemonDetails = ({ route, navigation }) => {
             </View>
           </View>
           {/* LOADING */}
-          {!(data && Object.keys(data)?.length > 0) ?
+
+          {!(data && Object.keys(data)?.length > 0)
+            ?
             <View>
               <Image
                 source={pokegif}
                 style={{
                   height: 179,
                   width: 320,
-                  marginTop: 100
+                  marginTop: 300,
+                  paddingBottom: 100
                 }}
               />
             </View>
@@ -309,7 +332,6 @@ const PokemonDetails = ({ route, navigation }) => {
                   <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>Altura</Text>
                   <View style={{ borderRadius: 10, padding: 5, backgroundColor: backgroundColors[types[0]], marginTop: 10 }}>
                     <Text style={{ textAlign: 'center', color: '#000000' }}>
-
                       {hgpoke / 10} m
                     </Text>
                   </View>

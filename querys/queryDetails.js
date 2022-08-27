@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const GET_DETALLES = gql`
-query getDetalles($_eq: Int,$_lan: String) {
-  pokemon_v2_pokemonspecies(where: {id: {_eq: $_eq}}) {
-    pokemon_v2_pokemonspeciesflavortexts(where: {language_id: {_eq: 7}}, limit: 1) {
+query getDetalles($id: Int, $lang: Int) {
+  pokemon_v2_pokemonspecies(where: {id: {_eq: $id}}) {
+    pokemon_v2_pokemonspeciesflavortexts(where: {language_id: {_eq: $lang}}, limit: 1) {
       flavor_text
     }
     pokemon_v2_pokemonshape {
       name
     }
-    pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: 7}}) {
+    pokemon_v2_pokemonspeciesnames(where: {language_id: {_eq: $lang}}) {
       genus
     }
     name
@@ -25,7 +25,7 @@ query getDetalles($_eq: Int,$_lan: String) {
         weight
       }
     }
-    pokemon_v2_pokemons(where: {id: {_eq: $_eq}}) {
+    pokemon_v2_pokemons(where: {id: {_eq: $id}}) {
       pokemon_v2_pokemontypes {
         pokemon_v2_type {
           name

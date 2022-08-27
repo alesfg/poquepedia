@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     name: {
       paddingTop: 45,
       paddingLeft: 21,
+      paddingBottom:10,
       flexDirection: "row",
       justifyContent: 'space-between'
     },
@@ -93,8 +94,7 @@ export const styles = StyleSheet.create({
       opacity: 0.7
     },
     fav: {
-      top: 30,
-      marginLeft: 35,
+      top: 40,
       width: '82%',
       flexDirection: 'row',
       justifyContent: 'space-between',
