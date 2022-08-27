@@ -1,54 +1,60 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-
 import pokeico from '../assets/navicon.png'
-
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function Conf({ navigation }) {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState("7");
+  const { getItem, setItem } = useAsyncStorage('@lang');
 
-  const pickerRef = useRef();
+  const readItemFromStorage = async () => {
+    const item = await getItem();
+    setSelectedLanguage(item);
+  };
 
-function open() {
-  pickerRef.current.focus();
+  const writeItemToStorage = async newValue => {
+    await setItem(newValue);
+    setSelectedLanguage(newValue);
+  };
+
+function setlang(lang){
+  setSelectedLanguage(lang)
+  writeItemToStorage(lang)
+  console.log("settedlang : "+lang)
 }
 
-function close() {
-  pickerRef.current.blur();
-}
-  const lang = [
-    { key: '1', value: 'Japonés' },
-    { key: '3', value: 'Coreano' },
-    { key: '4', value: 'Chino tradicional' },
-    { key: '5', value: 'Francés' },
-    { key: '6', value: 'Alemán' },
-    { key: '7', value: 'Español' },
-    { key: '8', value: 'Italiano' },
-    { key: '9', value: 'Inglés' },
-    { key: '12', value: 'Chino simplificado' }
-  ]
+useEffect(() => {
+  readItemFromStorage();
+}, [])
+
 
   return (
     <View style={styles.container}>
 
-      <Text style={{ fontWeight: 'bold', fontSize: 22, paddingBottom: 50 }}>¡Configuración estará disponible en la próxima actualización!</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 22, paddingBottom: 50 }}>Configuración</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>Idioma</Text>
       <View style={{backgroundColor:'#fefefe', width:'100%', minWidth:200}}>
       <Picker
-        ref={pickerRef}
         selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedLanguage(itemValue)
-        }>
-        <Picker.Item label="Español" value="7" />
-        <Picker.Item label="Inglés" value="9" />
-        <Picker.Item label="Japonés" value="1" />
-        <Picker.Item label="Francés" value="5" />
+        onValueChange={(itemValue, itemIndex) =>{
+          setlang(itemValue)
+        }}
+        placeholder={"Set your language"}
+        >
+        <Picker.Item label="Español" value={"7"} />
+        <Picker.Item label="Inglés" value={"9"} />
+        <Picker.Item label="Francés" value={"5"} />
+        <Picker.Item label="Alemán" value={"6"} />
+        <Picker.Item label="Italiano" value={"8"} />
+        <Picker.Item label="Japonés" value={"1"} />
+        <Picker.Item label="Chino simplificado" value={"12"} />
+        <Picker.Item label="Chino tradicional" value={"4"} />
+        <Picker.Item label="Coreano" value={"3"} />
       </Picker>
     </View>
 
-      <Text style={{ fontSize: 50 }}>⚙</Text>
-      <Text style={{ fontSize: 16, marginTop: 50 }}>Ajustes relacionados a la voz</Text>
+      <Text style={{ fontSize: 16, marginTop: 50 }}>Para aplicar cambios salga de detalles</Text>
       <Text style={{ fontSize: 20 }}>🎙</Text>
       <View style={styles.openDrawer}>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>

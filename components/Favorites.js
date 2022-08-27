@@ -8,28 +8,7 @@ export default function Favorites({navigation}) {
 
   console.log("Favs component")
   const [favs, setfavs] = useState([])
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@favs')
-      if(value !== null) {
-        // value previously stored
-        console.log(value)
-        value.forEach(fav => {
-          console.log(fav)
-        });
-        setfavs([...favs,value])
-      }
-    } catch(e) {
-      // error reading value
-    }
-  }
 
-  useEffect(() => {
-    getData
-    favs.forEach(e => {
-      console.log(e)
-    });
-  }, [])
   
 
   return (

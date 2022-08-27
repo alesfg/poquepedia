@@ -8,20 +8,20 @@ import PokemonCard from './PokemonCard';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-export default function PokemonList({ navigation }) {
 
-  const renderData = ({ item, index }) => {
-    return (
-      <PokemonCard 
-      item = { item }
-      navigation={ navigation }
-      />
-    )
-  }
+
+export default function PokemonList({ navigation }) { 
 
 const { width } = Dimensions.get('window');
-  
 
+const renderData = ({ item }) => {
+  return (
+    <PokemonCard 
+    item = { item }
+    navigation={ navigation }
+    />
+  )
+}
   return (
     <View style={styles.container}>
         <FlatList
@@ -38,10 +38,7 @@ const { width } = Dimensions.get('window');
             <Image
             source={pokegif}
             style={{
-              height: 179,
               width: width,
-              marginTop:10,
-              marginBottom:30
             }}
             />
             </View>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
-import { StyleSheet, View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { colors } from '../assets/colors'
 import { styles } from '../assets/styles/PokemonCardStyles'
+ 
 
 export default function PokemonCard({ item, navigation }) {
   const { id, name } = item
@@ -12,7 +12,6 @@ export default function PokemonCard({ item, navigation }) {
   const getImage = () => {
     setImageUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`)
   }
-
 
   useEffect(() => {
     getImage()
@@ -24,7 +23,7 @@ export default function PokemonCard({ item, navigation }) {
       onPress={() => navigation.navigate("Pokemon Details", {
         screen: 'Pokemon Details',
         type:type,
-        id: id
+        id: id,
       })}
     >
 
