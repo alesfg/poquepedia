@@ -38,10 +38,7 @@ const renderData = ({ item }) => {
             <Image
             source={pokegif}
             style={{
-              height: 179,
               width: width,
-              marginTop:10,
-              marginBottom:30
             }}
             />
             </View>
