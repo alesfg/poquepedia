@@ -6,7 +6,7 @@ import Progress from './ProgressBars';
 import pokeball_bg from '../assets/pokeball_bg.png'
 import pokegif from '../assets/image11.gif'
 import pokeico from '../assets/navicon.png'
-import { translateHabitat, translateType, code, voice } from '../assets/translate'
+import { translateHabitat, translateType, code, voice, tr } from '../assets/translate'
 import { styles } from '../assets/styles/PokemonDetailsStyles';
 import * as Speech from 'expo-speech';
 import { AntDesign } from '@expo/vector-icons';
@@ -185,7 +185,7 @@ const PokemonDetails = ({ route, navigation }) => {
           {/* LEGENDARIO */}
           {islegendary &&
             <View style={{ backgroundColor: '#000', borderRadius: 5, marginRight: 10, alignSelf: 'center', top: 2 }}>
-              <Text style={{ color: '#F9CF30', fontWeight: 'bold', textAlignVertical: 'center', paddingHorizontal: 7, paddingVertical: 2 }}>LEGENDARIO</Text>
+              <Text style={{ color: '#F9CF30', fontWeight: 'bold', textAlignVertical: 'center', paddingHorizontal: 7, paddingVertical: 2 }}>{tr('LEGENDARIO',selectedLanguage)}</Text>
             </View>
           }
           <Text style={{ fontWeight: 'bold', fontSize: 24, color: "white", alignSelf: 'flex-end', paddingRight: 30 }}>
@@ -258,10 +258,10 @@ const PokemonDetails = ({ route, navigation }) => {
           />
           <View style={{ flexDirection: 'row' }}>
             <View>
-              {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0])} </Text>}
+              {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0], selectedLanguage)} </Text>}
             </View>
             <View>
-              {types[1] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[1]] }]}> {translateType(types[1])} </Text>}
+              {types[1] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[1]] }]}> {translateType(types[1], selectedLanguage)} </Text>}
             </View>
           </View>
           {/* LOADING */}
@@ -313,7 +313,7 @@ const PokemonDetails = ({ route, navigation }) => {
               {/* STATS */}
               <View>
                 <View>
-                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>Estadísticas</Text>
+                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>{tr('Estadísticas', selectedLanguage)}</Text>
                 </View>
                 <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
                   <View style={styles.row}>

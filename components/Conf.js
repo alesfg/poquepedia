@@ -49,7 +49,7 @@ export default function Conf({ navigation }) {
     <View style={styles.container}>
 
       <Text style={{ fontWeight: 'bold', fontSize: 22, paddingBottom: 50 }}>Configuración</Text>
-      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>Idioma</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>LANG</Text>
       <View style={{ backgroundColor: '#fefefe', width: '100%', minWidth: 200 }}>
         <Picker
           selectedValue={selectedLanguage}
