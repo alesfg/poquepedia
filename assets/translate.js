@@ -632,6 +632,24 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "統計学"
           break;
+        case 'hp':
+          return '生活'
+          break;
+        case 'atk':
+          return '攻撃'
+          break;
+        case 'def':
+          return '防御'
+          break;
+        case 'spatk':
+          return '特殊攻撃'
+          break;
+        case 'spdef':
+          return '特防'
+          break;
+        case 'spd':
+          return '速度'
+          break;
         default:
           break;
       }
@@ -645,6 +663,24 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Estadísticas"
           break;
+          case 'hp':
+            return 'PV'
+            break;
+          case 'atk':
+            return 'Ataque'
+            break;
+          case 'def':
+            return 'Defensa'
+            break;
+          case 'spatk':
+            return 'Ataque especial'
+            break;
+          case 'spdef':
+            return 'Defensa especial'
+            break;
+          case 'spd':
+            return 'Velocidad'
+            break;
         default:
           break;
       }
@@ -657,6 +693,24 @@ export const tr = (word, lang) => {
           break;
         case 'Estadísticas':
           return "Statistiques"
+          break;
+          case 'hp':
+          return 'Vie'
+          break;
+        case 'atk':
+          return 'Attaque'
+          break;
+        case 'def':
+          return 'Défendre'
+          break;
+        case 'spatk':
+          return 'Attaque spéciale'
+          break;
+        case 'spdef':
+          return 'Défense spéciale'
+          break;
+        case 'spd':
+          return 'rapidité'
           break;
         default:
           break;
@@ -671,6 +725,24 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Statistiken"
           break;
+          case 'hp':
+          return 'Leben'
+          break;
+        case 'atk':
+          return 'Attacke'
+          break;
+        case 'def':
+          return 'Verteidigen'
+          break;
+        case 'spatk':
+          return 'Spezialangriff'
+          break;
+        case 'spdef':
+          return 'Spezielle Abwehr'
+          break;
+        case 'spd':
+          return 'Geschwindigkeit'
+          break;
         default:
           break;
       }
@@ -683,6 +755,24 @@ export const tr = (word, lang) => {
           break;
         case 'Estadísticas':
           return "Statistiche"
+          break;
+          case 'hp':
+          return 'Vita'
+          break;
+        case 'atk':
+          return 'Attaco'
+          break;
+        case 'def':
+          return 'Difendere'
+          break;
+        case 'spatk':
+          return 'Attaco speciale'
+          break;
+        case 'spdef':
+          return 'Difesa speciale'
+          break;
+        case 'spd':
+          return 'Velocità'
           break;
         default:
           break;
@@ -697,6 +787,24 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "统计数据"
           break;
+          case 'hp':
+            return '生活'
+            break;
+          case 'atk':
+            return '攻擊'
+            break;
+          case 'def':
+            return '防守'
+            break;
+          case 'spatk':
+            return '特殊攻擊'
+            break;
+          case 'spdef':
+            return '特殊防禦'
+            break;
+          case 'spd':
+            return '速度'
+            break;
         default:
           break;
       }
@@ -709,6 +817,24 @@ export const tr = (word, lang) => {
           break;
         case 'Estadísticas':
           return "統計數據"
+          break;
+          case 'hp':
+          return '生活'
+          break;
+        case 'atk':
+          return '攻擊'
+          break;
+        case 'def':
+          return '防守'
+          break;
+        case 'spatk':
+          return '特殊攻擊'
+          break;
+        case 'spdef':
+          return '特殊防禦'
+          break;
+        case 'spd':
+          return '速度'
           break;
         default:
           break;
@@ -723,6 +849,24 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "통계"
           break;
+          case 'hp':
+          return '삶'
+          break;
+        case 'atk':
+          return '공격'
+          break;
+        case 'def':
+          return '방어'
+          break;
+        case 'spatk':
+          return '특수 공격'
+          break;
+        case 'spdef':
+          return '특수 방어'
+          break;
+        case 'spd':
+          return '속도'
+          break;
         default:
           break;
       }
@@ -735,6 +879,24 @@ export const tr = (word, lang) => {
           break;
         case 'Estadísticas':
           return "Stats"
+          break;
+          case 'hp':
+          return 'HP'
+          break;
+        case 'atk':
+          return 'Attack'
+          break;
+        case 'def':
+          return 'Defense'
+          break;
+        case 'spatk':
+          return 'Special attack'
+          break;
+        case 'spdef':
+          return 'Special defense'
+          break;
+        case 'spd':
+          return 'Speed'
           break;
         default:
           break;

@@ -317,27 +317,27 @@ const PokemonDetails = ({ route, navigation }) => {
                 </View>
                 <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
+                    <Text style={[styles.stats, { color: stats['hp'] }]}>{tr('hp',selectedLanguage)}</Text>
                     <Progress step={hp} stat={'hp'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['attack'] }]}>Ataque</Text>
+                    <Text style={[styles.stats, { color: stats['attack'] }]}>{tr('atk',selectedLanguage)}</Text>
                     <Progress step={attack} stat={'attack'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['defense'] }]}>Defensa</Text>
+                    <Text style={[styles.stats, { color: stats['defense'] }]}>{tr('def',selectedLanguage)}</Text>
                     <Progress step={defense} stat={'defense'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['specialAttack'] }]}>Ataque especial</Text>
+                    <Text style={[styles.stats, { color: stats['specialAttack'] }]}>{tr('spatk',selectedLanguage)}</Text>
                     <Progress step={specialattack} stat={'specialAttack'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['specialDefense'] }]}>Defensa especial</Text>
+                    <Text style={[styles.stats, { color: stats['specialDefense'] }]}>{tr('spdef',selectedLanguage)}</Text>
                     <Progress step={specialdefense} stat={'specialDefense'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['speed'] }]}>Velocidad</Text>
+                    <Text style={[styles.stats, { color: stats['speed'] }]}>{tr('spd',selectedLanguage)}</Text>
                     <Progress step={speed} stat={'speed'} height={6} />
                   </View>
                 </View>
