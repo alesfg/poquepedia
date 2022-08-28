@@ -48,6 +48,7 @@ const PokemonDetails = ({ route, navigation }) => {
   const [thirdIdChain, setThirdIdChain] = useState()
   const [secondLevelEvoChain, setSecondLevelEvoChain] = useState()
   const [thirdLevelEvoChain, setThirdLevelEvoChain] = useState()
+  const [generation, setGeneration] = useState()
 
   const [selectedLanguage, setSelectedLanguage] = useState()
 
@@ -78,9 +79,9 @@ const PokemonDetails = ({ route, navigation }) => {
   }, [])
 
   useEffect(() => {
-    
+
   }, [selectedLanguage])
-  
+
 
   useEffect(() => {
     if (route.params?.type) {
@@ -109,6 +110,7 @@ const PokemonDetails = ({ route, navigation }) => {
       setThirdIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.id)
       setSecondLevelEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.pokemon_v2_pokemonevolutions_aggregate.nodes[0].min_level)
       setThirdLevelEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.pokemon_v2_pokemonevolutions_aggregate.nodes[0].min_level)
+      setGeneration(data.pokemon_v2_pokemonspecies[0].generation_id)
       settinyGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`)
       settinyBackGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${id}.gif`)
       settinyImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`)
@@ -366,24 +368,69 @@ const PokemonDetails = ({ route, navigation }) => {
               </View>
 
               {/* CHAIN EVO */}
+              {secondIdChain && thirdIdChain &&
               <View>
                 <Text style={[{ color: colors[types[0]] }, styles.genus]}> Evoluciones </Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around',alignItems:'center', paddingBottom: 15, paddingTop: 15 }}>
-                  <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${firstIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
-                  <Text>{secondLevelEvoChain}</Text>
-                  <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${secondIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
-                  <Text>{thirdLevelEvoChain}</Text>
-                  <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${thirdIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
-                </View>
-              </View>
-              {/* HABITAT */}
-              {habitat &&
-                <View style={{ paddingBottom: 30 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: 15, paddingTop: 15 }}>
                   <View>
-                    <Text style={[{ color: colors[types[0]] }, styles.genus]}>Hábitat</Text>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${firstIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{firstPokeEvoChain}</Text>
                   </View>
                   <View>
-                    <Text style={{ textAlign: 'center', textTransform: 'capitalize' }}>{translateHabitat(habitat)}</Text>
+                    <Text>{secondLevelEvoChain}</Text>
+                    <AntDesign name="arrowright" size={20} color="#0B0B0B" />
+                  </View>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${secondIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{secondPokeEvoChain}</Text>
+                  </View>
+                  <View>
+                    <Text>{thirdLevelEvoChain}</Text>
+                    <AntDesign name="arrowright" size={20} color="#0B0B0B" />
+                  </View>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${thirdIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{thirdPokeEvoChain}</Text>
+                  </View>
+                </View>
+              </View>
+              }
+              {(secondIdChain && thirdIdChain===undefined) && 
+              <View>
+                <Text style={[{ color: colors[types[0]] }, styles.genus]}> Evoluciones </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: 15, paddingTop: 15 }}>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${firstIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{firstPokeEvoChain}</Text>
+                  </View>
+                  <View>
+                    <Text>{secondLevelEvoChain}</Text>
+                    <AntDesign name="arrowright" size={20} color="#0B0B0B" />
+                  </View>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${secondIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{secondPokeEvoChain}</Text>
+                  </View>
+                </View>
+              </View>
+              }
+              {/* HABITAT */}
+              {habitat &&
+                <View style={{ padding: 20, flexDirection:'row',justifyContent:'space-around', alignItems:'baseline'}}>
+                  <View>
+                    <Text style={[{ color: colors[types[0]]}, styles.subtitle]}>Hábitat</Text>
+                  </View>
+                  <View>
+                    <Text style={{ textTransform: 'capitalize', color: backgroundColors[types[0]], fontWeight:'bold', fontSize:18 }}>{translateHabitat(habitat)}</Text>
+                  </View>
+                </View>
+              }
+
+              {/* GENERATION */}
+              {generation &&
+                <View style={{ padding: 20,paddingTop:10, alignItems:'center'}}>
+                  <View>
+                    <Text style={[{ color: colors[types[0]]}, styles.subtitle]}>{generation} Generación</Text>
                   </View>
                 </View>
               }

@@ -50,7 +50,6 @@ query getDetalles($id: Int, $lang: Int) {
       name
     }
     generation_id
-    evolves_from_species_id
   }
 }
 `

@@ -66,8 +66,11 @@ export const styles = StyleSheet.create({
       height: 90
     },
     subtitle: {
+      fontWeight: 'bold',
       fontSize: 20,
-      textAlign:'center'
+      marginTop: 20,
+      marginBottom:15,
+      textAlign: 'left'
     },
     type: {
       borderRadius: 10,
