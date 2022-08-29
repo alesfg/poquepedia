@@ -6,7 +6,7 @@ import Progress from './ProgressBars';
 import pokeball_bg from '../assets/pokeball_bg.png'
 import pokegif from '../assets/image11.gif'
 import pokeico from '../assets/navicon.png'
-import { translateHabitat, translateType } from '../assets/translate'
+import { translateHabitat, translateType, code, voice, tr } from '../assets/translate'
 import { styles } from '../assets/styles/PokemonDetailsStyles';
 import * as Speech from 'expo-speech';
 import { AntDesign } from '@expo/vector-icons';
@@ -34,10 +34,21 @@ const PokemonDetails = ({ route, navigation }) => {
   const [islegendary, setislegendary] = useState()
   const [tinyGifUri, settinyGifUri] = useState(null)
   const [tinyBackGifUri, settinyBackGifUri] = useState(null)
+  const [tinyshinyUri, settinyshinyUri] = useState(null)
+  const [tinyBackShinyUri, settinyBackShinyUri] = useState(null)
   const [tinyImgUri, settinyImgUri] = useState(null)
   const [tinyBackImgUri, settinyBackImgUri] = useState(null)
   const [wgpoke, setweight] = useState()
   const [hgpoke, setheight] = useState()
+  const [firstPokeEvoChain, setFirstPokeEvoChain] = useState()
+  const [secondPokeEvoChain, setSecondPokeEvoChain] = useState()
+  const [thirdPokeEvoChain, setThirdPokeEvoChain] = useState()
+  const [firstIdChain, setFirstIdChain] = useState()
+  const [secondIdChain, setSecondIdChain] = useState()
+  const [thirdIdChain, setThirdIdChain] = useState()
+  const [secondLevelEvoChain, setSecondLevelEvoChain] = useState()
+  const [thirdLevelEvoChain, setThirdLevelEvoChain] = useState()
+  const [generation, setGeneration] = useState()
 
   const [selectedLanguage, setSelectedLanguage] = useState()
 
@@ -47,29 +58,30 @@ const PokemonDetails = ({ route, navigation }) => {
   };
 
   const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+  const iconuri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${id}.png`
 
-  const speak = () => {
+  const speak = (code, voice) => {
     Speech.speak(name + "." +
       data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].flavor_text, {
       rate: 1.1,
-      language: 'es-ES',
+      language: code,
       pitch: 1,
-      voice: "es-es-x-eed-network"
+      voice: voice
     });
   };
+
   const { loading, error, data } = useQuery(GET_DETALLES, {
     variables: { "id": id, "lang": parseInt(selectedLanguage) }
   });
 
-  if (!loading) {
-    if (data && Object.keys(data)?.length > 0 && name != undefined) {
-      speak();
-    }
-  }
-
   useEffect(() => {
     readItemFromStorage();
   }, [])
+
+  useEffect(() => {
+
+  }, [selectedLanguage])
+
 
   useEffect(() => {
     if (route.params?.type) {
@@ -90,19 +102,38 @@ const PokemonDetails = ({ route, navigation }) => {
       setislegendary(data.pokemon_v2_pokemonspecies[0].is_legendary)
       setweight(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0]?.weight)
       setheight(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemons_aggregate.nodes[0]?.height)
+      setFirstPokeEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[0]?.name)
+      setSecondPokeEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.name)
+      setThirdPokeEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.name)
+      setFirstIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[0]?.id)
+      setSecondIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.id)
+      setThirdIdChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.id)
+      setSecondLevelEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[1]?.pokemon_v2_pokemonevolutions_aggregate.nodes[0].min_level)
+      setThirdLevelEvoChain(data.pokemon_v2_pokemonspecies[0].pokemon_v2_pokemonspeciesflavortexts[0].pokemon_v2_pokemonspecy.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies[2]?.pokemon_v2_pokemonevolutions_aggregate.nodes[0].min_level)
+      setGeneration(data.pokemon_v2_pokemonspecies[0].generation_id)
       settinyGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`)
       settinyBackGifUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/${id}.gif`)
       settinyImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`)
       settinyBackImgUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${id}.png`)
+      settinyshinyUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/${id}.gif`)
+      settinyBackShinyUri(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/${id}.gif`)
+
+
+
       navigation.addListener('beforeRemove', (e) => {
         Speech.stop()
       })
-      // getFavs(id)
     }
     if (Speech.isSpeakingAsync) {
       Speech.stop()
     }
   }, [data])
+
+  if (!loading) {
+    if (data && Object.keys(data)?.length > 0 && name != undefined) {
+      speak(code(selectedLanguage), voice(selectedLanguage));
+    }
+  }
 
   const goPokemonList = () => { navigation.navigate("Pokemon List") }
   const goNextPokemon = () => {
@@ -117,7 +148,7 @@ const PokemonDetails = ({ route, navigation }) => {
   }
   const goRandomPokemon = () => {
     navigation.navigate("Pokemon Details", {
-      id: Math.ceil(Math.random() * 840)
+      id: Math.ceil(Math.random() * 897)
     })
   }
 
@@ -154,7 +185,7 @@ const PokemonDetails = ({ route, navigation }) => {
           {/* LEGENDARIO */}
           {islegendary &&
             <View style={{ backgroundColor: '#000', borderRadius: 5, marginRight: 10, alignSelf: 'center', top: 2 }}>
-              <Text style={{ color: '#F9CF30', fontWeight: 'bold', textAlignVertical: 'center', paddingHorizontal: 7, paddingVertical: 2 }}>LEGENDARIO</Text>
+              <Text style={{ color: '#F9CF30', fontWeight: 'bold', textAlignVertical: 'center', paddingHorizontal: 7, paddingVertical: 2 }}>{tr('LEGENDARIO',selectedLanguage)}</Text>
             </View>
           }
           <Text style={{ fontWeight: 'bold', fontSize: 24, color: "white", alignSelf: 'flex-end', paddingRight: 30 }}>
@@ -193,7 +224,7 @@ const PokemonDetails = ({ route, navigation }) => {
             </TouchableOpacity>
           }
 
-          {id < 899 &&
+          {id < 898 &&
             <TouchableOpacity
               style={{ alignSelf: 'flex-end' }}
               onPress={() => goNextPokemon()}
@@ -214,10 +245,10 @@ const PokemonDetails = ({ route, navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity>
-              <AntDesign name="heart" size={30} 
-              color={'#0B0B0B'}
+              <AntDesign name="heart" size={30}
+                color={'#0B0B0B'}
               // color={fav !== true ?  '#0B0B0B' : 'red'}
-               />
+              />
             </TouchableOpacity>
 
           </View>
@@ -227,10 +258,10 @@ const PokemonDetails = ({ route, navigation }) => {
           />
           <View style={{ flexDirection: 'row' }}>
             <View>
-              {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0])} </Text>}
+              {types[0] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[0]] }]}> {translateType(types[0], selectedLanguage)} </Text>}
             </View>
             <View>
-              {types[1] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[1]] }]}> {translateType(types[1])} </Text>}
+              {types[1] && <Text style={[styles.type, { backgroundColor: backgroundColors[types[1]] }]}> {translateType(types[1], selectedLanguage)} </Text>}
             </View>
           </View>
           {/* LOADING */}
@@ -244,7 +275,8 @@ const PokemonDetails = ({ route, navigation }) => {
                   height: 179,
                   width: 320,
                   marginTop: 50,
-                  paddingBottom: 200
+                  paddingBottom: 270,
+                  marginBottom: 90
                 }}
               />
             </View>
@@ -277,34 +309,35 @@ const PokemonDetails = ({ route, navigation }) => {
                     source={{ uri: tinyBackImgUri }} style={styles.sprite} resizeMode='contain' />
                 </View>
               }
+
               {/* STATS */}
               <View>
                 <View>
-                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>Estadísticas</Text>
+                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>{tr('Estadísticas', selectedLanguage)}</Text>
                 </View>
                 <View style={{ marginTop: 5, width: '100%', alignSelf: 'center' }}>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['hp'] }]}>PV</Text>
+                    <Text style={[styles.stats, { color: stats['hp'] }]}>{tr('hp',selectedLanguage)}</Text>
                     <Progress step={hp} stat={'hp'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['attack'] }]}>Ataque</Text>
+                    <Text style={[styles.stats, { color: stats['attack'] }]}>{tr('atk',selectedLanguage)}</Text>
                     <Progress step={attack} stat={'attack'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['defense'] }]}>Defensa</Text>
+                    <Text style={[styles.stats, { color: stats['defense'] }]}>{tr('def',selectedLanguage)}</Text>
                     <Progress step={defense} stat={'defense'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['specialAttack'] }]}>Ataque especial</Text>
+                    <Text style={[styles.stats, { color: stats['specialAttack'] }]}>{tr('spatk',selectedLanguage)}</Text>
                     <Progress step={specialattack} stat={'specialAttack'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['specialDefense'] }]}>Defensa especial</Text>
+                    <Text style={[styles.stats, { color: stats['specialDefense'] }]}>{tr('spdef',selectedLanguage)}</Text>
                     <Progress step={specialdefense} stat={'specialDefense'} height={6} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={[styles.stats, { color: stats['speed'] }]}>Velocidad</Text>
+                    <Text style={[styles.stats, { color: stats['speed'] }]}>{tr('spd',selectedLanguage)}</Text>
                     <Progress step={speed} stat={'speed'} height={6} />
                   </View>
                 </View>
@@ -334,17 +367,91 @@ const PokemonDetails = ({ route, navigation }) => {
                 </View>
               </View>
 
-              {/* HABITAT */}
-              {habitat &&
-                <View>
+              {/* CHAIN EVO */}
+              {secondIdChain && thirdIdChain &&
+              <View>
+                <Text style={[{ color: colors[types[0]] }, styles.genus]}> Evoluciones </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: 15, paddingTop: 15 }}>
                   <View>
-                    <Text style={[{ color: colors[types[0]] }, styles.genus]}>Hábitat</Text>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${firstIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{firstPokeEvoChain}</Text>
                   </View>
                   <View>
-                    <Text style={{ textAlign: 'center', textTransform: 'capitalize' }}>{translateHabitat(habitat)}</Text>
+                    <Text>{secondLevelEvoChain}</Text>
+                    <AntDesign name="arrowright" size={20} color="#0B0B0B" />
+                  </View>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${secondIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{secondPokeEvoChain}</Text>
+                  </View>
+                  <View>
+                    <Text>{thirdLevelEvoChain}</Text>
+                    <AntDesign name="arrowright" size={20} color="#0B0B0B" />
+                  </View>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${thirdIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{thirdPokeEvoChain}</Text>
+                  </View>
+                </View>
+              </View>
+              }
+              {(secondIdChain && thirdIdChain===undefined) && 
+              <View>
+                <Text style={[{ color: colors[types[0]] }, styles.genus]}> Evoluciones </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingBottom: 15, paddingTop: 15 }}>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${firstIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{firstPokeEvoChain}</Text>
+                  </View>
+                  <View>
+                    <Text>{secondLevelEvoChain}</Text>
+                    <AntDesign name="arrowright" size={20} color="#0B0B0B" />
+                  </View>
+                  <View>
+                    <Image source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${secondIdChain}.png` }} style={styles.sprite} resizeMode='contain' />
+                    <Text style={{textTransform:'capitalize', textAlign:'center'}}>{secondPokeEvoChain}</Text>
+                  </View>
+                </View>
+              </View>
+              }
+              {/* HABITAT */}
+              {habitat &&
+                <View style={{ padding: 20, flexDirection:'row',justifyContent:'space-around', alignItems:'baseline'}}>
+                  <View>
+                    <Text style={[{ color: colors[types[0]]}, styles.subtitle]}>Hábitat</Text>
+                  </View>
+                  <View>
+                    <Text style={{ textTransform: 'capitalize', color: backgroundColors[types[0]], fontWeight:'bold', fontSize:18 }}>{translateHabitat(habitat)}</Text>
                   </View>
                 </View>
               }
+
+              {/* GENERATION */}
+              {generation &&
+                <View style={{ padding: 20,paddingTop:10, alignItems:'center'}}>
+                  <View>
+                    <Text style={[{ color: colors[types[0]]}, styles.subtitle]}>{generation} Generación</Text>
+                  </View>
+                </View>
+              }
+
+              {/* Shiny Sprites */}
+              {id < 650 &&
+                <View>
+                  <Text style={[{ color: colors[types[0]] }, styles.genus]}>Forma Shiny</Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 15, paddingTop: 15 }}>
+                    <Image
+                      source={{ uri: tinyshinyUri }} style={styles.sprite} resizeMode='contain' />
+                    <Image
+                      source={{ uri: tinyBackShinyUri }} style={styles.sprite} resizeMode='contain' />
+                  </View>
+                </View>
+              }
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 15, top: 16, zIndex: 1 }}>
+                <Image
+                  source={{ uri: iconuri }} style={{ height: 56, width: 68 }} resizeMode='contain' />
+
+              </View>
 
               {/* MORE DETAILS */}
               <TouchableOpacity>
