@@ -609,7 +609,7 @@ export const code = (lang) => {
 export const voice = (lang) => {
   const voice = {
     "7": "es-es-x-eed-network",
-    "9": 'en-gb-x-gba-local',
+    "9": "en-gb-x-rjs-local",
     "5": "fr-fr-x-vlf-network",
     "6": "de-de-x-deb-network",
     "8": "it-it-x-itd-local",
