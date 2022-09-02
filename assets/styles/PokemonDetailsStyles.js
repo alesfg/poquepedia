@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     },
     infoCard: {
       margin: 8,
-      // marginBottom: 18,
       backgroundColor: '#FFFFFF',
       flex: 1,
       borderRadius: 10,

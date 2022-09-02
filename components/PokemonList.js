@@ -6,6 +6,7 @@ import pokeico from '../assets/navicon.png'
 import { pokemon } from '../assets/pokeNames.json'
 import PokemonCard from './PokemonCard';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
 
 
@@ -17,7 +18,7 @@ export default function PokemonList({ navigation }) {
   const [filterData, setfilterData] = useState(pokemon)
 
   const searchName = (input) => {
-    let filtered=[];
+    let filtered = [];
     pokemon.filter((poke) => {
       poke.name.includes(input.toLowerCase()) && filtered.push(poke)
     })
@@ -36,13 +37,16 @@ export default function PokemonList({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* BUSCADOR FUERA DE LA FLATLIST */}
-      <View style={{paddingTop:100}}>
+      <View style={{
+        paddingTop: 50, padding: 10, justifyContent: 'center',
+        display: 'flex', flexDirection: 'row', alignItems: 'center'
+      }}>
+        <AntDesign name='search1' size={20} color='#777777' style={{ paddingRight: 10 }} />
         <TextInput
-          placeholder='Filter by name'
+          placeholder='Búsqueda por nombre'
           onChangeText={(input) => searchName(input)}
           maxLength={20}
-
+          style={styles.input}
         />
       </View>
       <FlatList
@@ -50,7 +54,7 @@ export default function PokemonList({ navigation }) {
         keyExtractor={(pokemon) => pokemon.id}
         ListHeaderComponent={() =>
           <View>
-            <Text style={{ fontWeight: 'bold', fontSize: 28, margin: 10, paddingTop: 40, textAlign: 'center' }}>VoiceDex</Text>
+            <Text style={{ fontWeight: 'bold', fontSize: 28, margin: 10, textAlign: 'center' }}>VoiceDex</Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>Pokédex con Voz</Text>
 
           </View>
@@ -67,14 +71,9 @@ export default function PokemonList({ navigation }) {
         }
         numColumns={3}
         initialNumToRender={15}
-        removeClippedSubviews={true}
-        maxToRenderPerBatch={6}
-        updateCellsBatchingPeriod={400}
+        maxToRenderPerBatch={5}
+        updateCellsBatchingPeriod={800}
         contentContainerStyle={{ alignItems: 'center' }}
-        onEndReachedThreshold={0.2}
-        onEndReached={() => {
-          // loadMore() no existe
-        }}
         renderItem={renderData}
       />
       <View style={styles.openDrawer}>

@@ -3,11 +3,18 @@ import { StyleSheet } from 'react-native'
 export const styles = StyleSheet.create({
   container: {
     // backgroundColor: '#F7F7F7',
-    backgroundColor: '#E4EAFF',
+    backgroundColor: '#E7EFFF',
     flex: 1,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  input: {
+    backgroundColor:'#F7F7F7',
+    width:300,
+    padding:4,
+    borderRadius:10,
+    textAlign:'center'
   },
   openDrawer: {
     backgroundColor:'#3e5f8f',
