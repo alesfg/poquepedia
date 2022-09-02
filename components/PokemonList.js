@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, Image, View, FlatList, Dimensions, TextInput } from 'react-native';
 import { styles } from '../assets/styles/PokemonListStyles'
 import pokegif from '../assets/chiko.gif'
@@ -7,15 +7,28 @@ import { pokemon } from '../assets/pokeNames.json'
 import PokemonCard from './PokemonCard';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
-
-
-
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function PokemonList({ navigation }) {
 
   const { width } = Dimensions.get('window');
 
   const [filterData, setfilterData] = useState(pokemon)
+  const [selectedLanguage, setSelectedLanguage] = useState()
+  const { getItem: getLang } = useAsyncStorage('@lang');
+
+  const readItemFromStorage = async () => {
+    const lang = await getLang();
+    if(lang == null || lang == undefined){
+      lang='7'
+    } 
+    setSelectedLanguage(lang);
+  };
+
+  useEffect(() => {
+    readItemFromStorage
+  }, [])
+  
 
   const searchName = (input) => {
     let filtered = [];

@@ -20,7 +20,6 @@ export default function App() {
 
   const Drawer = createDrawerNavigator();
 
-
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
