@@ -54,10 +54,6 @@ const PokemonDetails = ({ route, navigation }) => {
 
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2500).then(() => setRefreshing(false));
-  }, []);
 
   const readItemFromStorage = async () => {
     const lang = await getLang();

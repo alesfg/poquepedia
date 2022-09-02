@@ -8,6 +8,7 @@ import PokemonCard from './PokemonCard';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { trnodetails } from '../assets/translate'
 
 export default function PokemonList({ navigation }) {
 
@@ -24,16 +25,12 @@ export default function PokemonList({ navigation }) {
     } 
     setSelectedLanguage(lang);
   };
-
-  useEffect(() => {
-    readItemFromStorage
-  }, [])
-  
+  readItemFromStorage()
 
   const searchName = (input) => {
     let filtered = [];
     pokemon.filter((poke) => {
-      poke.name.includes(input.toLowerCase()) && filtered.push(poke)
+      poke.name.includes(input.toLowerCase()) || poke.id.toString().startsWith(input) && filtered.push(poke)
     })
     setfilterData(filtered)
   }
@@ -56,7 +53,7 @@ export default function PokemonList({ navigation }) {
       }}>
         <AntDesign name='search1' size={25} color='#777777' style={{ paddingRight: 10 }} />
         <TextInput
-          placeholder='Búsqueda por nombre'
+          placeholder='Busca por nombre o id'
           onChangeText={(input) => searchName(input)}
           maxLength={18}
           style={styles.input}
@@ -68,7 +65,7 @@ export default function PokemonList({ navigation }) {
         ListHeaderComponent={() =>
           <View>
             <Text style={{ fontWeight: 'bold', fontSize: 28, margin: 10, textAlign: 'center' }}>VoiceDex</Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>Pokédex con Voz</Text>
+            <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{ trnodetails('pkvoz', selectedLanguage) }</Text>
 
           </View>
         }

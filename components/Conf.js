@@ -12,6 +12,9 @@ export default function Conf({ navigation }) {
 
   const readItemFromStorage = async () => {
     const item = await getLang();
+    if(item==null||item==undefined){
+      item='7'
+    }
     setSelectedLanguage(item);
   };
 
@@ -58,14 +61,13 @@ export default function Conf({ navigation }) {
           }}
           placeholder={"Set your language"}
         >
-          <Picker.Item label="Español" value={"7"} />
+          <Picker.Item label={`"Español" ES`} value={"7"} />
           <Picker.Item label="Inglés" value={"9"} />
           <Picker.Item label="Francés" value={"5"} />
           <Picker.Item label="Alemán" value={"6"} />
           <Picker.Item label="Italiano" value={"8"} />
           <Picker.Item label="Japonés" value={"1"} />
           <Picker.Item label="Chino simplificado" value={"12"} />
-          <Picker.Item label="Chino tradicional" value={"4"} />
           <Picker.Item label="Coreano" value={"3"} />
         </Picker>
       </View>
