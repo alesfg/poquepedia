@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
   nameContainer: {
     flex: 1,
     justifyContent:'center',
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
     marginBottom: -1
   },
 });

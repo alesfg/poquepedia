@@ -14,7 +14,9 @@ export const styles = StyleSheet.create({
     width:300,
     padding:4,
     borderRadius:10,
-    textAlign:'center'
+    textAlign:'center',
+    borderColor: '#777777',
+    borderWidth:0.5
   },
   openDrawer: {
     backgroundColor:'#3e5f8f',

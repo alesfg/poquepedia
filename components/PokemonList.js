@@ -41,11 +41,11 @@ export default function PokemonList({ navigation }) {
         paddingTop: 50, padding: 10, justifyContent: 'center',
         display: 'flex', flexDirection: 'row', alignItems: 'center'
       }}>
-        <AntDesign name='search1' size={20} color='#777777' style={{ paddingRight: 10 }} />
+        <AntDesign name='search1' size={25} color='#777777' style={{ paddingRight: 10 }} />
         <TextInput
           placeholder='Búsqueda por nombre'
           onChangeText={(input) => searchName(input)}
-          maxLength={20}
+          maxLength={18}
           style={styles.input}
         />
       </View>
