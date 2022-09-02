@@ -16,11 +16,13 @@ export const styles = StyleSheet.create({
       justifyContent: 'space-between'
     },
     infoCard: {
-      margin: 14,
-      marginBottom: 20,
+      margin: 8,
+      // marginBottom: 18,
       backgroundColor: '#FFFFFF',
       flex: 1,
       borderRadius: 10,
+      borderBottomLeftRadius:25,
+      borderBottomRightRadius:25,
       alignItems: 'center',
       padding: 20,
     },
@@ -57,9 +59,9 @@ export const styles = StyleSheet.create({
       marginHorizontal:10
     },
     image: {
-      width: 200,
-      height: 200,
-      marginTop: -170
+      width: 220,
+      height: 220,
+      marginTop: -200
     },
     sprite: {
       width: 90,

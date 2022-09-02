@@ -5,17 +5,14 @@ export const styles = StyleSheet.create({
   card: {
     backgroundColor:'#F7F7F7',
     marginVertical: 10,
-    borderRadius: 15,
-    width: width / 3.5,
+    borderRadius: 10,
+    width: width / 3.4,
     height: width / 3,
     justifyContent: 'center',
-    // backgroundColor: 'white',
     borderWidth: 1.5,
-    // elevation: 1,
     margin: 3,
   },
   image: {
-    // backgroundColor:'lightgreen',
     flex: 3,
   },
   digits: {
@@ -33,6 +30,7 @@ export const styles = StyleSheet.create({
   },
   nameContainer: {
     flex: 1,
+    justifyContent:'center',
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     marginBottom: -1
