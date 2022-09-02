@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, Image, View, FlatList, Dimensions, TextInput } from 'react-native';
 import { styles } from '../assets/styles/PokemonListStyles'
 import pokegif from '../assets/chiko.gif'
@@ -9,6 +9,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { trnodetails } from '../assets/translate'
+import { useFocusEffect } from '@react-navigation/native';
+
 
 export default function PokemonList({ navigation }) {
 
@@ -25,16 +27,22 @@ export default function PokemonList({ navigation }) {
     } 
     setSelectedLanguage(lang);
   };
-  readItemFromStorage()
+  // readItemFromStorage()
 
   const searchName = (input) => {
     let filtered = [];
     pokemon.filter((poke) => {
-      poke.name.includes(input.toLowerCase()) || poke.id.toString().startsWith(input) && filtered.push(poke)
+      (poke.name.includes(input.toLowerCase()) || poke.id.toString().startsWith(input)) && filtered.push(poke)
     })
     setfilterData(filtered)
   }
 
+  useFocusEffect(
+    React.useCallback(() => {
+      readItemFromStorage()
+    }, [])
+    )
+  
 
   const renderData = ({ item }) => {
     return (
@@ -53,7 +61,7 @@ export default function PokemonList({ navigation }) {
       }}>
         <AntDesign name='search1' size={25} color='#777777' style={{ paddingRight: 10 }} />
         <TextInput
-          placeholder='Busca por nombre o id'
+          placeholder={trnodetails('busca', selectedLanguage)}
           onChangeText={(input) => searchName(input)}
           maxLength={18}
           style={styles.input}

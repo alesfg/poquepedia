@@ -12,6 +12,7 @@ import * as Speech from 'expo-speech';
 import { AntDesign } from '@expo/vector-icons';
 import { GET_DETALLES } from '../querys/queryDetails';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const PokemonDetails = ({ route, navigation }) => {
@@ -59,7 +60,12 @@ const PokemonDetails = ({ route, navigation }) => {
     const lang = await getLang();
     setSelectedLanguage(lang);
   };
-  readItemFromStorage();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      readItemFromStorage()
+    }, [])
+    )
 
   const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
   const iconuri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${id}.png`
@@ -359,11 +365,11 @@ const PokemonDetails = ({ route, navigation }) => {
 
               {/* PESO ALTURA */}
               <View>
-                <Text style={[{ color: colors[types[0]] }, styles.genus]}>Dimensiones</Text>
+                <Text style={[{ color: colors[types[0]] }, styles.genus]}>{tr('dimensiones', selectedLanguage)}</Text>
               </View>
               <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 5, marginBottom: 15 }}>
                 <View>
-                  <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>Peso</Text>
+                  <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>{tr('peso', selectedLanguage)}</Text>
                   <View style={{ borderRadius: 10, padding: 5, backgroundColor: backgroundColors[types[0]], marginTop: 10 }}>
                     <Text style={{ textAlign: 'center', color: '#000000' }}>
                       {wgpoke / 10} kg
@@ -372,7 +378,7 @@ const PokemonDetails = ({ route, navigation }) => {
                 </View>
 
                 <View>
-                  <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>Altura</Text>
+                  <Text style={[{ color: backgroundColors[types[0]] }, styles.span]}>{tr('altura', selectedLanguage)}</Text>
                   <View style={{ borderRadius: 10, padding: 5, backgroundColor: backgroundColors[types[0]], marginTop: 10 }}>
                     <Text style={{ textAlign: 'center', color: '#000000' }}>
                       {hgpoke / 10} m

@@ -366,7 +366,7 @@ export const translateType = (type, lang) => {
           break;
       }
     }
-    
+
     //Coreano
     case "3": {
       switch (type) {
@@ -588,6 +588,15 @@ export const tr = (word, lang) => {
         case 'spd':
           return '速度'
           break;
+        case 'dimensiones':
+          return '寸法'
+          break;
+        case 'peso':
+          return '重さ'
+          break;
+        case 'altura':
+          return '身長'
+          break;
         default:
           break;
       }
@@ -601,24 +610,33 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Estadísticas"
           break;
-          case 'hp':
-            return 'PV'
-            break;
-          case 'atk':
-            return 'Ataque'
-            break;
-          case 'def':
-            return 'Defensa'
-            break;
-          case 'spatk':
-            return 'Ataque especial'
-            break;
-          case 'spdef':
-            return 'Defensa especial'
-            break;
-          case 'spd':
-            return 'Velocidad'
-            break;
+        case 'hp':
+          return 'PV'
+          break;
+        case 'atk':
+          return 'Ataque'
+          break;
+        case 'def':
+          return 'Defensa'
+          break;
+        case 'spatk':
+          return 'Ataque especial'
+          break;
+        case 'spdef':
+          return 'Defensa especial'
+          break;
+        case 'spd':
+          return 'Velocidad'
+          break;
+        case 'dimensiones':
+          return 'Dimensiones'
+          break;
+        case 'peso':
+          return 'Peso'
+          break;
+        case 'altura':
+          return 'Altura'
+          break;
         default:
           break;
       }
@@ -632,7 +650,7 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Statistiques"
           break;
-          case 'hp':
+        case 'hp':
           return 'Vie'
           break;
         case 'atk':
@@ -650,6 +668,15 @@ export const tr = (word, lang) => {
         case 'spd':
           return 'rapidité'
           break;
+        case 'dimensiones':
+          return 'Dimensions'
+          break;
+        case 'peso':
+          return 'Lester'
+          break;
+        case 'altura':
+          return 'Taille'
+          break;
         default:
           break;
       }
@@ -663,7 +690,7 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Statistiken"
           break;
-          case 'hp':
+        case 'hp':
           return 'Leben'
           break;
         case 'atk':
@@ -681,6 +708,15 @@ export const tr = (word, lang) => {
         case 'spd':
           return 'Geschwindigkeit'
           break;
+        case 'dimensiones':
+          return 'Maße'
+          break;
+        case 'peso':
+          return 'Gewicht'
+          break;
+        case 'altura':
+          return 'Höhe'
+          break;
         default:
           break;
       }
@@ -694,7 +730,7 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Statistiche"
           break;
-          case 'hp':
+        case 'hp':
           return 'Vita'
           break;
         case 'atk':
@@ -712,6 +748,15 @@ export const tr = (word, lang) => {
         case 'spd':
           return 'Velocità'
           break;
+        case 'dimensiones':
+          return 'Dimensioni'
+          break;
+        case 'peso':
+          return 'Peso'
+          break;
+        case 'altura':
+          return 'Altezza'
+          break;
         default:
           break;
       }
@@ -725,38 +770,7 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "统计数据"
           break;
-          case 'hp':
-            return '生活'
-            break;
-          case 'atk':
-            return '攻擊'
-            break;
-          case 'def':
-            return '防守'
-            break;
-          case 'spatk':
-            return '特殊攻擊'
-            break;
-          case 'spdef':
-            return '特殊防禦'
-            break;
-          case 'spd':
-            return '速度'
-            break;
-        default:
-          break;
-      }
-    }
-    //Ch tr
-    case "4": {
-      switch (word) {
-        case 'LEGENDARIO':
-          return "傳奇的"
-          break;
-        case 'Estadísticas':
-          return "統計數據"
-          break;
-          case 'hp':
+        case 'hp':
           return '生活'
           break;
         case 'atk':
@@ -774,6 +788,15 @@ export const tr = (word, lang) => {
         case 'spd':
           return '速度'
           break;
+        case 'dimensiones':
+          return '方面'
+          break;
+        case 'peso':
+          return '重量'
+          break;
+        case 'altura':
+          return '高度'
+          break;
         default:
           break;
       }
@@ -787,7 +810,7 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "통계"
           break;
-          case 'hp':
+        case 'hp':
           return '삶'
           break;
         case 'atk':
@@ -805,6 +828,15 @@ export const tr = (word, lang) => {
         case 'spd':
           return '속도'
           break;
+        case 'dimensiones':
+          return '치수'
+          break;
+        case 'peso':
+          return '무게'
+          break;
+        case 'altura':
+          return '키'
+          break;
         default:
           break;
       }
@@ -818,7 +850,7 @@ export const tr = (word, lang) => {
         case 'Estadísticas':
           return "Stats"
           break;
-          case 'hp':
+        case 'hp':
           return 'HP'
           break;
         case 'atk':
@@ -835,6 +867,15 @@ export const tr = (word, lang) => {
           break;
         case 'spd':
           return 'Speed'
+          break;
+        case 'dimensiones':
+          return 'diiii'
+          break;
+        case 'peso':
+          return 'Weight'
+          break;
+        case 'altura':
+          return 'Height'
           break;
         default:
           break;
@@ -854,10 +895,10 @@ export const trnodetails = (word, lang) => {
     case "1": {
       switch (word) {
         case 'pkvoz':
-          return "伝説的"
+          return "声付きポケデックス"
           break;
-        case 'Estadísticas':
-          return "統計学"
+        case 'busca':
+          return "名前またはIDで検索"
           break;
         case 'hp':
           return '生活'
@@ -871,12 +912,6 @@ export const trnodetails = (word, lang) => {
         case 'spatk':
           return '特殊攻撃'
           break;
-        case 'spdef':
-          return '特防'
-          break;
-        case 'spd':
-          return '速度'
-          break;
         default:
           break;
       }
@@ -885,29 +920,23 @@ export const trnodetails = (word, lang) => {
     case "7": {
       switch (word) {
         case 'pkvoz':
-          return "pkvoz"
+          return "Pokédex con voz"
           break;
-        case 'Estadísticas':
-          return "Estadísticas"
+        case 'busca':
+          return "Busca por nombre o id"
           break;
-          case 'hp':
-            return 'PV'
-            break;
-          case 'atk':
-            return 'Ataque'
-            break;
-          case 'def':
-            return 'Defensa'
-            break;
-          case 'spatk':
-            return 'Ataque especial'
-            break;
-          case 'spdef':
-            return 'Defensa especial'
-            break;
-          case 'spd':
-            return 'Velocidad'
-            break;
+        case 'hp':
+          return 'PV'
+          break;
+        case 'atk':
+          return 'Ataque'
+          break;
+        case 'def':
+          return 'Defensa'
+          break;
+        case 'spatk':
+          return 'Ataque especial'
+          break;
         default:
           break;
       }
@@ -916,12 +945,12 @@ export const trnodetails = (word, lang) => {
     case "5": {
       switch (word) {
         case 'pkvoz':
-          return "LÈGENDAIRE"
+          return "Pokedex avec voix"
           break;
-        case 'Estadísticas':
-          return "Statistiques"
+        case 'busca':
+          return "Recherche par nom ou identifiant"
           break;
-          case 'hp':
+        case 'hp':
           return 'Vie'
           break;
         case 'atk':
@@ -933,12 +962,6 @@ export const trnodetails = (word, lang) => {
         case 'spatk':
           return 'Attaque spéciale'
           break;
-        case 'spdef':
-          return 'Défense spéciale'
-          break;
-        case 'spd':
-          return 'rapidité'
-          break;
         default:
           break;
       }
@@ -947,12 +970,12 @@ export const trnodetails = (word, lang) => {
     case "6": {
       switch (word) {
         case 'pkvoz':
-          return "LEGENDÄR"
+          return "Pokedex mit Stimme"
           break;
-        case 'Estadísticas':
-          return "Statistiken"
+        case 'busca':
+          return "Suche nach name oder ID"
           break;
-          case 'hp':
+        case 'hp':
           return 'Leben'
           break;
         case 'atk':
@@ -964,12 +987,6 @@ export const trnodetails = (word, lang) => {
         case 'spatk':
           return 'Spezialangriff'
           break;
-        case 'spdef':
-          return 'Spezielle Abwehr'
-          break;
-        case 'spd':
-          return 'Geschwindigkeit'
-          break;
         default:
           break;
       }
@@ -980,10 +997,10 @@ export const trnodetails = (word, lang) => {
         case 'pkvoz':
           return "Pokedex con la voce"
           break;
-        case 'Estadísticas':
-          return "Statistiche"
+        case 'busca':
+          return "Cerca per nome o ID"
           break;
-          case 'hp':
+        case 'hp':
           return 'Vita'
           break;
         case 'atk':
@@ -995,12 +1012,6 @@ export const trnodetails = (word, lang) => {
         case 'spatk':
           return 'Attaco speciale'
           break;
-        case 'spdef':
-          return 'Difesa speciale'
-          break;
-        case 'spd':
-          return 'Velocità'
-          break;
         default:
           break;
       }
@@ -1009,43 +1020,12 @@ export const trnodetails = (word, lang) => {
     case "12": {
       switch (word) {
         case 'pkvoz':
-          return "传奇的"
+          return "带语音的图鉴"
           break;
-        case 'Estadísticas':
-          return "统计数据"
+        case 'busca':
+          return "按名称或 ID 搜索"
           break;
-          case 'hp':
-            return '生活'
-            break;
-          case 'atk':
-            return '攻擊'
-            break;
-          case 'def':
-            return '防守'
-            break;
-          case 'spatk':
-            return '特殊攻擊'
-            break;
-          case 'spdef':
-            return '特殊防禦'
-            break;
-          case 'spd':
-            return '速度'
-            break;
-        default:
-          break;
-      }
-    }
-    //Ch tr
-    case "4": {
-      switch (word) {
-        case 'pkvoz':
-          return "傳奇的"
-          break;
-        case 'Estadísticas':
-          return "統計數據"
-          break;
-          case 'hp':
+        case 'hp':
           return '生活'
           break;
         case 'atk':
@@ -1057,12 +1037,6 @@ export const trnodetails = (word, lang) => {
         case 'spatk':
           return '特殊攻擊'
           break;
-        case 'spdef':
-          return '特殊防禦'
-          break;
-        case 'spd':
-          return '速度'
-          break;
         default:
           break;
       }
@@ -1071,12 +1045,12 @@ export const trnodetails = (word, lang) => {
     case "3": {
       switch (word) {
         case 'pkvoz':
-          return "전설적인"
+          return "목소리가있는 Pokedex"
           break;
-        case 'Estadísticas':
-          return "통계"
+        case 'busca':
+          return "이름 또는 아이디로 검색"
           break;
-          case 'hp':
+        case 'hp':
           return '삶'
           break;
         case 'atk':
@@ -1088,12 +1062,6 @@ export const trnodetails = (word, lang) => {
         case 'spatk':
           return '특수 공격'
           break;
-        case 'spdef':
-          return '특수 방어'
-          break;
-        case 'spd':
-          return '속도'
-          break;
         default:
           break;
       }
@@ -1104,10 +1072,10 @@ export const trnodetails = (word, lang) => {
         case 'pkvoz':
           return "Pokedex with voice"
           break;
-        case 'Estadísticas':
-          return "Stats"
+        case 'busca':
+          return "Search by name or id"
           break;
-          case 'hp':
+        case 'hp':
           return 'HP'
           break;
         case 'atk':
@@ -1118,12 +1086,6 @@ export const trnodetails = (word, lang) => {
           break;
         case 'spatk':
           return 'Special attack'
-          break;
-        case 'spdef':
-          return 'Special defense'
-          break;
-        case 'spd':
-          return 'Speed'
           break;
         default:
           break;
