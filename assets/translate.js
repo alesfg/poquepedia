@@ -62,7 +62,8 @@ export const translateType = (type, lang) => {
       }
     }
     //Esp
-    case "7": {
+    case "7":
+      case "77": {
       switch (type) {
         case 'fire':
           return "fuego"
@@ -71,7 +72,7 @@ export const translateType = (type, lang) => {
           return "volador"
           break;
         case 'grass':
-          return 'hierba'
+          return 'planta'
           break;
         case 'poison':
           return 'veneno'
@@ -510,25 +511,689 @@ export const translateHabitat = (habitat) => {
   }
   return habitats[habitat];
 }
+export const trHabitat = (habitat, lang) => {
+  //Incompleto
+  switch (lang) {
+    //Japo
+    case "1": {
+      switch (habitat) {
+        case 'mountain':
+          return "🗻"
+          break;
+        case 'waters-edge':
+          return "🚿"
+          break;
+        case 'forest':
+          return '🌲'
+          break;
+        case 'rought-terrain':
+          return '👺'
+          break;
+        case 'grassland':
+          return '🌄'
+          break;
+        case 'cave':
+          return '🦇'
+          break;
+        case 'rare':
+          return '👽'
+          break;
+        case 'sea':
+          return '🌊'
+          break;
+        case 'urban':
+          return '🌆'
+          break;
+        default:
+          break;
+      }
+    }
+    //Esp
+    case "77":
+      case "7": {
+      switch (habitat) {
+        case 'mountain':
+          return "Montaña🗻"
+          break;
+        case 'waters-edge':
+          return "Zona de agua🚿"
+          break;
+        case 'forest':
+          return 'Bosque🌲'
+          break;
+        case 'rought-terrain':
+          return 'Terreno accidentado👺'
+          break;
+        case 'grassland':
+          return 'Pradera🌄'
+          break;
+        case 'cave':
+          return 'Cueva🦇'
+          break;
+        case 'rare':
+          return 'Raro👽'
+          break;
+        case 'sea':
+          return 'Mar🌊'
+          break;
+        case 'urban':
+          return 'Urbano🌆'
+          break;
+        default:
+          break;
+      }
+    }
+    //Fr
+    case "5": {
+      switch (habitat) {
+        case 'mountain':
+          return "Po🗻 avec voix"
+          break;
+        case 'waters-edge':
+          return "🚿 par nom ou identifiant"
+          break;
+        case 'forest':
+          return '🌲'
+          break;
+        case 'rought-terrain':
+          return '👺'
+          break;
+        case 'grassland':
+          return '🌄'
+          break;
+        case 'cave':
+          return '🦇 spéciale'
+          break;
+        case 'rare':
+          return '👽'
+          break;
+        case 'sea':
+          return '🌊'
+          break;
+        case 'urban':
+          return '🌆 spéciale'
+          break;
+        default:
+          break;
+      }
+    }
+    //Alemán
+    case "6": {
+      switch (habitat) {
+        case 'mountain':
+          return "Po🗻 mit Stimme"
+          break;
+        case 'waters-edge':
+          return "🚿 nach name oder ID"
+          break;
+        case 'forest':
+          return '🌲'
+          break;
+        case 'rought-terrain':
+          return '👺'
+          break;
+        case 'grassland':
+          return '🌄'
+          break;
+        case 'cave':
+          return '🦇'
+          break;
+        case 'rare':
+          return '👽'
+          break;
+        case 'sea':
+          return '🌊'
+          break;
+        case 'urban':
+          return '🌆'
+          break;
+        default:
+          break;
+      }
+    }
+    //It
+    case "8": {
+      switch (habitat) {
+        case 'mountain':
+          return "Po🗻 con la voce"
+          break;
+        case 'waters-edge':
+          return "🚿 per nome o ID"
+          break;
+        case 'forest':
+          return '🌲'
+          break;
+        case 'rought-terrain':
+          return '👺'
+          break;
+        case 'grassland':
+          return '🌄'
+          break;
+        case 'cave':
+          return '🦇 speciale'
+          break;
+        case 'rare':
+          return '👽'
+          break;
+        case 'sea':
+          return '🌊'
+          break;
+        case 'urban':
+          return '🌆 speciale'
+          break;
+        default:
+          break;
+      }
+    }
+    //Ch Simpl
+    case "12": {
+      switch (habitat) {
+        case 'mountain':
+          return "🗻"
+          break;
+        case 'waters-edge':
+          return "🚿 ID 搜索"
+          break;
+        case 'forest':
+          return '🌲'
+          break;
+        case 'rought-terrain':
+          return '👺'
+          break;
+        case 'grassland':
+          return '🌄'
+          break;
+        case 'cave':
+          return '🦇'
+          break;
+        case 'rare':
+          return '👽'
+          break;
+        case 'sea':
+          return '🌊'
+          break;
+        case 'urban':
+          return '🌆'
+          break;
+        default:
+          break;
+      }
+    }
+    //Coreano
+    case "3": {
+      switch (habitat) {
+        case 'mountain':
+          return "🗻 Pokedex"
+          break;
+        case 'waters-edge':
+          return "🚿 또는 아이디로 검색"
+          break;
+        case 'forest':
+          return '🌲'
+          break;
+        case 'rought-terrain':
+          return '👺'
+          break;
+        case 'grassland':
+          return '🌄'
+          break;
+        case 'cave':
+          return '🦇'
+          break;
+        case 'rare':
+          return '👽'
+          break;
+        case 'sea':
+          return '🌊'
+          break;
+        case 'urban':
+          return '🌆'
+          break;
+        default:
+          break;
+      }
+    }
+    // Inglés
+    case "9": {
+      switch (habitat) {
+        case 'mountain':
+          return "Mountain🗻"
+          break;
+        case 'waters-edge':
+          return "Waters edge🚿"
+          break;
+        case 'forest':
+          return 'Forest🌲'
+          break;
+        case 'rought-terrain':
+          return 'Rought terrain👺'
+          break;
+        case 'grassland':
+          return 'Grassland🌄'
+          break;
+        case 'cave':
+          return 'Cave🦇'
+          break;
+        case 'rare':
+          return 'Rare👽'
+          break;
+        case 'sea':
+          return 'Sea🌊'
+          break;
+        case 'urban':
+          return 'Urban🌆'
+          break;
+        default:
+          break;
+      }
+    }
+      break;
 
-export const translateShape = (shape) => {
-  const shapes = {
-    armor: "armadura",
-    arms: "brazos",
-    ball: "bola",
-    blob: "gota",
-    'bug-wings': "insecto alas",
-    fish: "pez",
-    heads: "cabezas",
-    humanoid: "humanoide",
-    legs: "piernas",
-    quadruped: "cuadrúpedo",
-    squiggle: "garabato",
-    tentacles: "tentáculos",
-    upright: "vertical",
-    wings: "alas"
+    default:
+      break;
   }
-  return shapes[shape];
+}
+
+export const trShape = (shape, lang) => {
+  //Incompleto
+  switch (lang) {
+    //Japo
+    case "1": {
+      switch (word) {
+        case 'armor':
+          return "声付きポケデックス"
+          break;
+        case 'arms':
+          return "名前またはIDで検索"
+          break;
+        case 'ball':
+          return '生活'
+          break;
+        case 'blob':
+          return '攻撃'
+          break;
+        case 'bug-wings':
+          return '防御'
+          break;
+        case 'fish':
+          return '特殊攻撃'
+          break;
+        case 'heads':
+          return '攻撃'
+          break;
+        case 'humanoid':
+          return '防御'
+          break;
+        case 'legs':
+          return '特殊攻撃'
+          break;
+        case 'quadruped':
+          return '攻撃'
+          break;
+        case 'squiggle':
+          return '防御'
+          break;
+        case 'tentacles':
+          return '特殊攻撃'
+          break;
+        case 'upright':
+          return '攻撃'
+          break;
+        case 'wings':
+          return '防御'
+          break;
+        default:
+          break;
+      }
+    }
+    //Esp
+    case "7": {
+      switch (word) {
+        case 'armor':
+          return "Armadura"
+          break;
+        case 'arms':
+          return "Brazos"
+          break;
+        case 'ball':
+          return 'Bola'
+          break;
+        case 'blob':
+          return 'Gota'
+          break;
+        case 'bug-wings':
+          return 'Bicho con alas'
+          break;
+        case 'fish':
+          return 'Pez'
+          break;
+        case 'heads':
+          return 'Cabezas'
+          break;
+        case 'humanoid':
+          return 'Humanoide'
+          break;
+        case 'legs':
+          return 'Piernas'
+          break;
+        case 'quadruped':
+          return 'Cuadrúpedo'
+          break;
+        case 'squiggle':
+          return 'Garabato'
+          break;
+        case 'tentacles':
+          return 'Tentáculos'
+          break;
+        case 'upright':
+          return 'Vertical'
+          break;
+        case 'wings':
+          return 'Alas'
+          break;
+        default:
+          break;
+      }
+    }
+    //Fr
+    case "5": {
+      switch (word) {
+        case 'armor':
+          return "Pokedex avec voix"
+          break;
+        case 'arms':
+          return "Recherche par nom ou identifiant"
+          break;
+        case 'ball':
+          return 'Vie'
+          break;
+        case 'blob':
+          return 'Attaque'
+          break;
+        case 'bug-wings':
+          return 'Défendre'
+          break;
+        case 'fish':
+          return 'Attaque spéciale'
+          break;
+        case 'heads':
+          return 'Attaque'
+          break;
+        case 'humanoid':
+          return 'Défendre'
+          break;
+        case 'legs':
+          return 'Attaque spéciale'
+          break;
+        case 'quadruped':
+          return 'Attaque'
+          break;
+        case 'squiggle':
+          return 'Défendre'
+          break;
+        case 'tentacles':
+          return 'Attaque spéciale'
+          break;
+        case 'upright':
+          return 'Attaque'
+          break;
+        case 'wings':
+          return 'Défendre'
+          break;
+        default:
+          break;
+      }
+    }
+    //Alemán
+    case "6": {
+      switch (word) {
+        case 'armor':
+          return "Pokedex mit Stimme"
+          break;
+        case 'arms':
+          return "Suche nach name oder ID"
+          break;
+        case 'ball':
+          return 'Leben'
+          break;
+        case 'blob':
+          return 'Attacke'
+          break;
+        case 'bug-wings':
+          return 'Verteidigen'
+          break;
+        case 'fish':
+          return 'Spezialangriff'
+          break;
+        case 'heads':
+          return 'Attacke'
+          break;
+        case 'humanoid':
+          return 'Verteidigen'
+          break;
+        case 'legs':
+          return 'Spezialangriff'
+          break;
+        case 'quadruped':
+          return 'Attacke'
+          break;
+        case 'squiggle':
+          return 'Verteidigen'
+          break;
+        case 'tentacles':
+          return 'Spezialangriff'
+          break;
+        case 'upright':
+          return 'Attacke'
+          break;
+        case 'wings':
+          return 'Verteidigen'
+          break;
+        default:
+          break;
+      }
+    }
+    //It
+    case "8": {
+      switch (word) {
+        case 'armor':
+          return "Pokedex con la voce"
+          break;
+        case 'arms':
+          return "Cerca per nome o ID"
+          break;
+        case 'ball':
+          return 'Vita'
+          break;
+        case 'blob':
+          return 'Attaco'
+          break;
+        case 'bug-wings':
+          return 'Difendere'
+          break;
+        case 'fish':
+          return 'Attaco speciale'
+          break;
+        case 'heads':
+          return 'Attaco'
+          break;
+        case 'humanoid':
+          return 'Difendere'
+          break;
+        case 'legs':
+          return 'Attaco speciale'
+          break;
+        case 'quadruped':
+          return 'Attaco'
+          break;
+        case 'squiggle':
+          return 'Difendere'
+          break;
+        case 'tentacles':
+          return 'Attaco speciale'
+          break;
+        case 'upright':
+          return 'Attaco'
+          break;
+        case 'wings':
+          return 'Difendere'
+          break;
+        default:
+          break;
+      }
+    }
+    //Ch Simpl
+    case "12": {
+      switch (word) {
+        case 'armor':
+          return "带语音的图鉴"
+          break;
+        case 'arms':
+          return "按名称或 ID 搜索"
+          break;
+        case 'ball':
+          return '生活'
+          break;
+        case 'blob':
+          return '攻擊'
+          break;
+        case 'bug-wings':
+          return '防守'
+          break;
+        case 'fish':
+          return '特殊攻擊'
+          break;
+        case 'heads':
+          return '攻擊'
+          break;
+        case 'humanoid':
+          return '防守'
+          break;
+        case 'legs':
+          return '特殊攻擊'
+          break;
+        case 'quadruped':
+          return '攻擊'
+          break;
+        case 'squiggle':
+          return '防守'
+          break;
+        case 'tentacles':
+          return '特殊攻擊'
+          break;
+        case 'upright':
+          return '攻擊'
+          break;
+        case 'wings':
+          return '防守'
+          break;
+        default:
+          break;
+      }
+    }
+    //Coreano
+    case "3": {
+      switch (word) {
+        case 'armor':
+          return "목소리가있는 Pokedex"
+          break;
+        case 'arms':
+          return "이름 또는 아이디로 검색"
+          break;
+        case 'ball':
+          return '삶'
+          break;
+        case 'blob':
+          return '공격'
+          break;
+        case 'bug-wings':
+          return '방어'
+          break;
+        case 'fish':
+          return '특수 공격'
+          break;
+        case 'heads':
+          return '공격'
+          break;
+        case 'humanoid':
+          return '방어'
+          break;
+        case 'legs':
+          return '특수 공격'
+          break;
+        case 'quadruped':
+          return '공격'
+          break;
+        case 'squiggle':
+          return '방어'
+          break;
+        case 'tentacles':
+          return '특수 공격'
+          break;
+        case 'upright':
+          return '공격'
+          break;
+        case 'wings':
+          return '방어'
+          break;
+        default:
+          break;
+      }
+    }
+    // Inglés
+    case "9": {
+      switch (word) {
+        case 'armor':
+          return "Pokedex with voice"
+          break;
+        case 'arms':
+          return "Search by name or id"
+          break;
+        case 'ball':
+          return 'HP'
+          break;
+        case 'blob':
+          return 'Attack'
+          break;
+        case 'bug-wings':
+          return 'Defense'
+          break;
+        case 'fish':
+          return 'Special attack'
+          break;
+        case 'heads':
+          return 'Attack'
+          break;
+        case 'humanoid':
+          return 'Defense'
+          break;
+        case 'legs':
+          return 'Special attack'
+          break;
+        case 'quadruped':
+          return 'Attack'
+          break;
+        case 'squiggle':
+          return 'Defense'
+          break;
+        case 'tentacles':
+          return 'Special attack'
+          break;
+        case 'upright':
+          return 'Attack'
+          break;
+        case 'wings':
+          return 'Defense'
+          break;
+        default:
+          break;
+      }
+    }
+      break;
+
+    default:
+      break;
+  }
 }
 
 export const code = (lang) => {
@@ -540,7 +1205,8 @@ export const code = (lang) => {
     "8": 'it-IT',
     "1": 'ja-JP',
     "12": 'zh-CN',
-    "3": 'ko-KR'
+    "3": 'ko-KR',
+    "77": 'es-US'
   }
   return code[lang];
 }
@@ -548,6 +1214,7 @@ export const code = (lang) => {
 export const voice = (lang) => {
   const voice = {
     "7": "es-es-x-eed-network",
+    "77": "es-US-language",
     "9": "en-gb-x-rjs-local",
     "5": "fr-fr-x-vlf-network",
     "6": "de-de-x-deb-network",
@@ -597,11 +1264,24 @@ export const tr = (word, lang) => {
         case 'altura':
           return '身長'
           break;
+        case 'evo':
+          return '進化'
+          break;
+        case 'habitat':
+          return '生息地'
+          break;
+        case 'generacion':
+          return '進化'
+          break;
+        case 'shiny':
+          return '生息地'
+          break;    
         default:
           break;
       }
     }
     //Esp
+    case "77":
     case "7": {
       switch (word) {
         case 'LEGENDARIO':
@@ -637,6 +1317,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return 'Altura'
           break;
+        case 'evo':
+          return 'Evoluciones'
+          break;
+        case 'habitat':
+          return 'Habitat'
+          break;
+        case 'generacion':
+          return 'Evoluciones'
+          break;
+        case 'shiny':
+          return 'Habitat'
+          break;    
         default:
           break;
       }
@@ -677,6 +1369,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return 'Taille'
           break;
+        case 'evo':
+          return 'Évolutions'
+          break;
+        case 'habitat':
+          return 'Habitat'
+          break;
+        case 'generacion':
+          return 'Évolutions'
+          break;
+        case 'shiny':
+          return 'Habitat'
+          break;    
         default:
           break;
       }
@@ -717,6 +1421,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return 'Höhe'
           break;
+        case 'evo':
+          return 'Entwicklungen'
+          break;
+        case 'habitat':
+          return 'Lebensraum'
+          break;
+        case 'generacion':
+          return 'Entwicklungen'
+          break;
+        case 'shiny':
+          return 'Lebensraum'
+          break;    
         default:
           break;
       }
@@ -757,6 +1473,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return 'Altezza'
           break;
+        case 'evo':
+          return 'Evoluzioni'
+          break;
+        case 'habitat':
+          return 'Habitat'
+          break;
+        case 'generacion':
+          return 'Evoluzioni'
+          break;
+        case 'shiny':
+          return 'Habitat'
+          break;    
         default:
           break;
       }
@@ -797,6 +1525,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return '高度'
           break;
+        case 'evo':
+          return '演变'
+          break;
+        case 'habitat':
+          return '栖息地'
+          break;
+        case 'generacion':
+          return '演变'
+          break;
+        case 'shiny':
+          return '栖息地'
+          break;    
         default:
           break;
       }
@@ -837,6 +1577,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return '키'
           break;
+        case 'evo':
+          return '진화'
+          break;
+        case 'habitat':
+          return '서식지'
+          break;
+        case 'generacion':
+          return '진화'
+          break;
+        case 'shiny':
+          return '서식지'
+          break;    
         default:
           break;
       }
@@ -869,7 +1621,7 @@ export const tr = (word, lang) => {
           return 'Speed'
           break;
         case 'dimensiones':
-          return 'diiii'
+          return 'Dimensions'
           break;
         case 'peso':
           return 'Weight'
@@ -877,6 +1629,18 @@ export const tr = (word, lang) => {
         case 'altura':
           return 'Height'
           break;
+        case 'evo':
+          return 'Evolution Chain'
+          break;
+        case 'habitat':
+          return 'Habitat'
+          break;
+        case 'generacion':
+          return 'Evolution Chain'
+          break;
+        case 'shiny':
+          return 'Habitat'
+          break;    
         default:
           break;
       }
@@ -917,6 +1681,7 @@ export const trnodetails = (word, lang) => {
       }
     }
     //Esp
+    case "77":
     case "7": {
       switch (word) {
         case 'pkvoz':

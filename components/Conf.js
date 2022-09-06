@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Image, Dimensions, Switch, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import pokeico from '../assets/navicon.png'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function Conf({ navigation }) {
   const [selectedLanguage, setSelectedLanguage] = useState("7");
-  const [narrator, isNarrator] = useState(true);
+  const [narrator, isNarrator] = useState("1");
   const { getItem: getLang, setItem: setLang } = useAsyncStorage('@lang');
   const { getItem: getNarrator, setItem: setNarrator } = useAsyncStorage('@narrator');
 
@@ -29,31 +29,34 @@ export default function Conf({ navigation }) {
   
   const readNarratorFromStorage = async () => {
     const nar = await getNarrator();
-    isNarrator(JSON.parse(nar));
-    console.log("narrator read: "+narrator)
-  };
+    if(nar==null||nar==undefined){
+      nar='1'
+    }
+    isNarrator(nar);
+  }
+
   const writeNarratorToStorage = async newValue => {
-    await setNarrator(JSON.stringify(newValue));
-  };
-  const toggleVoice = async() => {
-    isNarrator(previousState => !previousState);
-    await writeNarratorToStorage(narrator)
-    console.log("Narrador togleao: " + narrator)
+    await setNarrator(newValue);
+    isNarrator(newValue)
+  }
+
+  function setnarrator(narra) {
+    isNarrator(narra)
+    writeNarratorToStorage(narra)
   }
 
   useEffect(() => {
     readItemFromStorage();
-    // readNarratorFromStorage()
-    console.log("eff"+narrator)
+    readNarratorFromStorage()
   }, [])
 
 
   return (
     <View style={styles.container}>
 
-      <Text style={{ fontWeight: 'bold', fontSize: 22, paddingBottom: 50 }}>Configuración</Text>
-      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>LANG</Text>
-      <View style={{ backgroundColor: '#fefefe', width: '100%', minWidth: 200 }}>
+      <Text style={{ fontWeight: 'bold', fontSize: 22, paddingBottom: 30 }}>Configuración</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>Language | Idioma</Text>
+      <View style={{ backgroundColor: '#fefefe', width: '80%', minWidth: 200 }}>
         <Picker
           selectedValue={selectedLanguage}
           onValueChange={(itemValue, itemIndex) => {
@@ -61,25 +64,31 @@ export default function Conf({ navigation }) {
           }}
           placeholder={"Set your language"}
         >
-          <Picker.Item label={`"Español" ES`} value={"7"} />
-          <Picker.Item label="Inglés" value={"9"} />
-          <Picker.Item label="Francés" value={"5"} />
-          <Picker.Item label="Alemán" value={"6"} />
-          <Picker.Item label="Italiano" value={"8"} />
-          <Picker.Item label="Japonés" value={"1"} />
-          <Picker.Item label="Chino simplificado" value={"12"} />
-          <Picker.Item label="Coreano" value={"3"} />
+          <Picker.Item label={`Español - ES`} value={"7"} />
+          <Picker.Item label={`Latino - LAT`} value={"77"} />
+          <Picker.Item label="Inglés - EN" value={"9"} />
+          <Picker.Item label="Francés - FR" value={"5"} />
+          <Picker.Item label="Alemán - DE" value={"6"} />
+          <Picker.Item label="Italiano - IT" value={"8"} />
+          <Picker.Item label="Japonés - JA" value={"1"} />
+          <Picker.Item label="Chino simplificado - CH" value={"12"} />
+          <Picker.Item label="Coreano - KO" value={"3"} />
         </Picker>
       </View>
 
-      <Text style={{ fontSize: 16, marginTop: 50 }}>Para aplicar cambios salga de detalles</Text>
-      <Text style={{ fontSize: 20 }}>🎙</Text>
-      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>Narrador</Text>
-      {/* <Switch
-      trackColor={{ false: '#767577', true: '#81b0ff' }}
-      thumbColor={narrator ? '#f5dd4b' : '#f4f3f4'}
-        onValueChange={toggleVoice()}
-      /> */}
+      <Text style={{ fontWeight: 'bold', fontSize: 18, padding: 30 }}>Narrador 🎙</Text>
+      <View style={{ backgroundColor: '#fefefe', width: '80%', minWidth: 200 }}>
+        <Picker
+          selectedValue={narrator}
+          onValueChange={(itemValue, itemIndex) => {
+            setnarrator(itemValue)
+          }}
+          placeholder={"Activa/Desactiva el narrador"}
+        >
+          <Picker.Item label={`Activado`} value={"1"} />
+          <Picker.Item label={`Desactivado`} value={"0"} />
+        </Picker>
+      </View>
 
 
       <View style={styles.openDrawer}>

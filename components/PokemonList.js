@@ -31,9 +31,15 @@ export default function PokemonList({ navigation }) {
 
   const searchName = (input) => {
     let filtered = [];
+    let names = [];
     pokemon.filter((poke) => {
-      (poke.name.includes(input.toLowerCase()) || poke.id.toString().startsWith(input)) && filtered.push(poke)
+      (poke?.name?.includes(input.toLowerCase()) || poke?.id?.toString().startsWith(input)) && filtered.push(poke)
     })
+    // Hacver
+    /* if(selectedLanguage=='5'){
+        pokemon?.frenchnames?.filter((e)=>e.names.toLowerCase().includes(input.toLowerCase()) && names.push(e.names) )
+      }  */
+
     setfilterData(filtered)
   }
 

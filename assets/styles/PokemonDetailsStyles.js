@@ -19,9 +19,7 @@ export const styles = StyleSheet.create({
       margin: 8,
       backgroundColor: '#FFFFFF',
       flex: 1,
-      borderRadius: 10,
-      borderBottomLeftRadius:25,
-      borderBottomRightRadius:25,
+      borderRadius: 25,
       alignItems: 'center',
       padding: 20,
     },
@@ -39,7 +37,7 @@ export const styles = StyleSheet.create({
     },
     genus: {
       fontWeight: 'bold',
-      fontSize: 20,
+      fontSize: 18,
       marginTop: 20,
       marginBottom:15,
       textAlign: 'center'
@@ -68,7 +66,7 @@ export const styles = StyleSheet.create({
     },
     subtitle: {
       fontWeight: 'bold',
-      fontSize: 20,
+      fontSize: 21,
       marginTop: 20,
       marginBottom:15,
       textAlign: 'left'
