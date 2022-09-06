@@ -22,12 +22,11 @@ export default function PokemonList({ navigation }) {
 
   const readItemFromStorage = async () => {
     const lang = await getLang();
-    if(lang == null || lang == undefined){
-      lang='7'
-    } 
     setSelectedLanguage(lang);
+    if(lang == null || lang == undefined){
+      setSelectedLanguage('7')
+    }
   };
-  // readItemFromStorage()
 
   const searchName = (input) => {
     let filtered = [];

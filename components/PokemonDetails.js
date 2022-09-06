@@ -63,9 +63,10 @@ const PokemonDetails = ({ route, navigation }) => {
   const readItemFromStorage = async () => {
     const lang = await getLang();
     setSelectedLanguage(lang);
-  };
-
-
+    if(lang == null || lang == undefined){
+      setSelectedLanguage('7')
+    }
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -183,10 +184,10 @@ const PokemonDetails = ({ route, navigation }) => {
 
   const readNarratorFromStorage = async () => {
     const nar = await getNarrator();
-    if(nar==null||nar==undefined){
-      nar='1'
-    }
     isNarrator(nar);
+    if(nar==null||nar==undefined){
+      isNarrator('1')
+    }
   }
 
   if (error) {
