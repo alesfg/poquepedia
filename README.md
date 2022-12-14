@@ -6,10 +6,10 @@ Link App on Play Store:
 React Native app that speak data from Pokemons.
 Here some screen captures:
 
-![Details](https://github.com/alesfg/voicedex/blob/main/details.jpg)
-![Details](https://github.com/alesfg/voicedex/blob/main/details2.jpg)
-![Main List](https://github.com/alesfg/voicedex/blob/main/mainlist.jpg)
-![Lang](https://github.com/alesfg/voicedex/blob/main/conf.jpg)
+![Details](https://github.com/alesfg/voicedex/details.png)
+![Details](https://github.com/alesfg/voicedex/details2.png)
+![Main List](https://github.com/alesfg/voicedex//mainlist.png)
+![Lang](https://github.com/alesfg/voicedex/conf.png)
 
 
 Available on Play Store
