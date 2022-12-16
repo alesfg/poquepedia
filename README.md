@@ -1,9 +1,9 @@
-# VoiceDex
+# Poquepedia
 
 Link App on Play Store: 
-[PocketDex](https://play.google.com/store/apps/details?id=com.alexfg.pocketdex)
+[Poquepedia](https://play.google.com/store/apps/details?id=com.alexfg.pocketdex)
 
-React Native app that speak data from Pokemons.
+React Native app to fans of Pokémon.
 Here some screen captures:
 
 ![Details](https://github.com/alesfg/voicedex/blob/dev/details.png)
